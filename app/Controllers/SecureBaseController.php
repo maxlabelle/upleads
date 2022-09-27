@@ -78,14 +78,14 @@ abstract class SecureBaseController extends Controller
 
               $uri = service('uri');
               if ($uri->getSegment(1) === "admin" && !hasRole($user->roles, "Admin")) {
-                $auth = false;
+                return $this->template->view("errors/error_401");
               }
             }
           }
         }
 
         if (!$auth) {
-          return $this->template->view("errors/error_401");
+          return redirect()->to('/');
         }
 
         return $this->{$method}(...$params);

@@ -82,7 +82,9 @@
                </p>
              </a>
            </li>
-          <li class="nav-header">Merchants</li>
+
+           <?php if (hasRole(roles(), "Merchant")) { ?>
+          <li class="nav-header">Merchant</li>
           <li class="nav-item">
             <a href="/merchants/campaigns" class="nav-link  <?=isActive('campaigns')?>">
               <i class="nav-icon fa-solid fa-diagram-project"></i>
@@ -91,11 +93,21 @@
               </p>
             </a>
           </li>
-
-          <li class="nav-header">Affiliates</li>
           <li class="nav-item">
-            <a href="/affiliates/programs" class="nav-link">
-              <i class="nav-icon fa-sharp fa-solid fa-messages-dollar"></i>
+            <a href="/merchants/campaigns" class="nav-link  <?=isActive('affiliates')?>">
+              <i class="nav-icon fa-solid fa-users-viewfinder"></i>
+              <p>
+                Affiliates
+              </p>
+            </a>
+          </li>
+          <?php } ?>
+
+          <?php if (hasRole(roles(), "Affiliate")) { ?>
+          <li class="nav-header">Affiliate</li>
+          <li class="nav-item">
+            <a href="/affiliates/programs" class="nav-link">              
+              <i class="nav-icon fa-solid fa-coins"></i>
               <p>
                 Coupons
               </p>
@@ -109,6 +121,15 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="/wallet/balance" class="nav-link">
+              <i class="nav-icon fa-solid fa-wallet"></i>
+              <p>
+                Wallet
+              </p>
+            </a>
+          </li>
+          <?php } ?>
 
           <li class="nav-header">Referrals</li>
           <li class="nav-item">
@@ -119,6 +140,7 @@
               </p>
             </a>
           </li>
+
           <?php if (hasRole(roles(), "Admin")) { ?>
           <li class="nav-header">Admin</li>
           <li class="nav-item">
@@ -129,14 +151,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="/wallet/balance" class="nav-link">
-              <i class="nav-icon fas fa-calendar-alt"></i>
-              <p>
-                Wallet
-              </p>
-            </a>
-          </li>
+
           <li class="nav-item">
             <a href="/help" class="nav-link">
               <i class="nav-icon fa-regular fa-circle-question"></i>

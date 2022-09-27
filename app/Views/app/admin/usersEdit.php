@@ -53,6 +53,7 @@
                   <select name="roles[]" class="select2" multiple="multiple" data-placeholder="Roles" style="width: 100%;">
                     <option value="Admin" <?=(!empty($user) && hasRole($user->roles, 'Admin')) ? 'selected' : ''?>>Admin</option>
                     <option value="Affiliate" <?=(!empty($user) && hasRole($user->roles, 'Affiliate')) ? 'selected' : ''?>>Affiliate</option>
+                    <option value="Merchant" <?=(!empty($user) && hasRole($user->roles, 'Merchant')) ? 'selected' : ''?>>Merchant</option>
                   </select>
                 </div>
 
