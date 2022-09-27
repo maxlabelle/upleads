@@ -119,7 +119,7 @@
               </p>
             </a>
           </li>
-
+          <?php if (hasRole(roles(), "Admin")) { ?>
           <li class="nav-header">Admin</li>
           <li class="nav-item">
             <a href="/admin/users" class="nav-link <?=isActive('users')?>">
@@ -145,6 +145,7 @@
               </p>
             </a>
           </li>
+          <?php } ?>
 
         </ul>
       </nav>

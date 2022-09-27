@@ -24,6 +24,11 @@ function hasRole($roles, $role) {
   return false;
 }
 
+function roles() {
+  $session = session();
+  return $session->get('roles');
+}
+
 function isActive($segment) {
   $uri = service('uri');
   $segments = $uri->getSegments();
@@ -40,6 +45,6 @@ function isActive($segment) {
     $class = (!empty($segments[0]) && isset($segments[1]) && $segments[1] === $segment)
     ? 'active' : '';
   }
-  
+
   return $class;
 }

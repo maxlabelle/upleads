@@ -71,6 +71,11 @@ abstract class SecureBaseController extends Controller
           if ($user) {
             if ($user->status === "Active") {
               $auth = true;
+
+              $this->session->set([
+                'roles' => $user->roles,
+              ]);
+
               $uri = service('uri');
               if ($uri->getSegment(1) === "admin" && !hasRole($user->roles, "Admin")) {
                 $auth = false;
@@ -82,7 +87,7 @@ abstract class SecureBaseController extends Controller
         if (!$auth) {
           return $this->template->view("errors/error_401");
         }
-        
+
         return $this->{$method}(...$params);
     }
 }

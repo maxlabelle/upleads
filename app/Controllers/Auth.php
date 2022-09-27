@@ -40,7 +40,8 @@ class Auth extends BaseController
             $row = $query->getRow();
             if (password_verify($password, $row->passwordhash)) {
               $this->session->set([
-                'userId'=>$row->id
+                'userId'=>$row->id,
+                'roles'=>$row->roles,
               ]);
               return redirect()->to('/dashboard');
             }
