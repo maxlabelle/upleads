@@ -26,6 +26,7 @@
 <script src="/plugins/raphael/raphael.min.js"></script>
 <script src="/plugins/jquery-mapael/jquery.mapael.min.js"></script>
 <script src="/plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<script src="/plugins/select2/js/select2.full.min.js"></script>
 <!-- ChartJS -->
 <script src="/plugins/chart.js/Chart.min.js"></script>
 
@@ -67,6 +68,7 @@
       "responsive": true,
     });
   });
+  $('.select2').select2()
 </script>
 </body>
 </html>

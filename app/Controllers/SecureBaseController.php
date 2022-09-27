@@ -11,6 +11,7 @@ use Psr\Log\LoggerInterface;
 
 use App\Libraries\Template;
 use App\Models\CampaignsModel;
+use App\Models\UsersModel;
 
 /**
  * Class BaseController
@@ -54,8 +55,10 @@ abstract class SecureBaseController extends Controller
         $this->db = \Config\Database::connect();
         $this->template = new Template();
         $this->request = \Config\Services::request();
+        $this->uri = new \CodeIgniter\HTTP\URI();
 
         $this->campaignsModel = new CampaignsModel();
+        $this->usersModel = new UsersModel();
     }
 
     public function _remap($method, ...$params)
@@ -68,8 +71,13 @@ abstract class SecureBaseController extends Controller
             $auth = true;
           }
         }
+        $uri = service('uri');
+        if ($uri->getSegment(1) === "admin" && !hasRole($userId, "Admin")) {
+          $auth = false;
+        }
+
         if (!$auth) {
-          return redirect()->to('/');
+          return $this->template->view("errors/error_401");
         }
         return $this->{$method}(...$params);
     }

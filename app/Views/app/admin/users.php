@@ -13,7 +13,7 @@
               <div class="card-header">
                 <div class="row">
                   <div class="col-md-12">
-                    <h5>Campaigns</h5>
+                    <h5>Users</h5>
                   </div>
                 </div>
               </div>
@@ -25,19 +25,19 @@
                   <tr>
                     <th>Name</th>
                     <th>Status</th>
-                    <th class="text-right tiny-width" data-orderable="false">
-                      <a href="/merchants/campaigns/new" class="btn btn-sm btn-success"><i class="fa-solid fa-circle-plus"></i></a>
-                    </th>
+                    <th class="text-right tiny-width" data-orderable="false"><a href="/admin/users/new" class="btn btn-sm btn-success"><i class="fa-solid fa-circle-plus"></i></a></th>
                   </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($campaigns->getResult() as $row) { ?>
+                    <?php foreach($users->getResult() as $row) { ?>
                       <tr>
                         <td><?=$row->name?></td>
                         <td><?=$row->status?></td>
                         <td class="text-right tiny-width">
-                          <a id="aDeleteBtn" href="/merchants/campaigns/delete/<?=$row->id?>" class="btn btn-sm btn-danger"><i class="fa-solid fa-circle-xmark"></i></a>
-                          <a href="/merchants/campaigns/edit/<?=$row->id?>" class="btn btn-sm btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
+                          <?php if (!hasRole($row->roles, 'Admin')) { ?>
+                            <a id="aDeleteBtn" href="/admin/users/delete/<?=$row->id?>" class="btn btn-sm btn-danger"><i class="fa-solid fa-circle-xmark"></i></a>
+                          <?php } ?>
+                          <a href="/admin/users/edit/<?=$row->id?>" class="btn btn-sm btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
                         </td>
                       </tr>
                     <?php } ?>

@@ -38,13 +38,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Left navbar links -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="/" class="nav-link <?=$_active['home']?>">Home</a>
+            <a href="/" class="nav-link <?=isActive('home')?>">Home</a>
           </li>
           <li class="nav-item">
-            <a href="/home/pricing" class="nav-link <?=$_active['pricing']?>">Pricing</a>
+            <a href="/home/pricing" class="nav-link  <?=isActive('pricing')?>">Pricing</a>
           </li>
           <li class="nav-item">
-            <a href="https://upleads.readme.io/reference/purchase-api" class="nav-link">Documentation</a>
+            <a href="https://upleads.readme.io/reference/getting-started-with-your-api" class="nav-link">Documentation</a>
           </li>
 
         </ul>

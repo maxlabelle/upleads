@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -73,7 +75,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
            <li class="nav-item">
-             <a href="/dashboard" class="nav-link <?=$_active['dashboard']?>">
+             <a href="/dashboard" class="nav-link <?=isActive('dashboard')?>">
                <i class="nav-icon fas fa-tachometer-alt"></i>
                <p>
                  Dashboard
@@ -82,7 +84,7 @@
            </li>
           <li class="nav-header">Merchants</li>
           <li class="nav-item">
-            <a href="/merchants/campaigns" class="nav-link <?=$_active['campaigns']?>">
+            <a href="/merchants/campaigns" class="nav-link  <?=isActive('campaigns')?>">
               <i class="nav-icon fa-solid fa-diagram-project"></i>
               <p>
                 Campaigns
@@ -120,7 +122,7 @@
 
           <li class="nav-header">Admin</li>
           <li class="nav-item">
-            <a href="/admin/users" class="nav-link">
+            <a href="/admin/users" class="nav-link <?=isActive('users')?>">
               <i class="nav-icon fa-solid fa-users"></i>
               <p>
                 Users
