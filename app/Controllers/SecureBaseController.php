@@ -65,20 +65,24 @@ abstract class SecureBaseController extends Controller
     {
         $auth = false;
         $userId = $this->session->get('userId');
+
         if (!empty($userId)) {
-          $query = $this->db->table('users')->getWhere(['id'=>$userId]);
-          if ($query->getNumRows()) {
-            $auth = true;
+          $user = $this->usersModel->getWhereSingle(['id'=>$userId]);
+          if ($user) {
+            if ($user->status === "Active") {
+              $auth = true;
+              $uri = service('uri');
+              if ($uri->getSegment(1) === "admin" && !hasRole($user->roles, "Admin")) {
+                $auth = false;
+              }
+            }
           }
-        }
-        $uri = service('uri');
-        if ($uri->getSegment(1) === "admin" && !hasRole($userId, "Admin")) {
-          $auth = false;
         }
 
         if (!$auth) {
           return $this->template->view("errors/error_401");
         }
+        
         return $this->{$method}(...$params);
     }
 }
