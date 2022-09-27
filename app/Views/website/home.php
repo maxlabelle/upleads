@@ -19,10 +19,11 @@
                   <p class="lead">Upleads Affiliate Marketing & Tracking Software is a free and open-source affiliate marketing software.</p>
                   <hr class="my-4">
                   <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="/home/pricing" role="button"><i class="fa-solid fa-download"></i> Download</a>
-                    <a class="btn btn-primary btn-lg" href="/home/pricing" role="button"><i class="fa-brands fa-github"></i> Github</a>
-                    <a class="btn btn-primary btn-lg" href="/home/pricing" role="button"><i class="fa-solid fa-download"></i> Cloud version</a>
+                    <a class="btn btn-info btn-lg" href="/home/pricing" role="button"><i class="fa-solid fa-cloud"></i> Cloud version</a>
+                    <a class="btn btn-primary btn-lg" href="https://github.com/maxlabelle/upleads" role="button"><i class="fa-solid fa-download"></i> Download</a>
+                    <a class="btn btn-default btn-lg" href="https://github.com/maxlabelle/upleads" role="button"><i class="fa-brands fa-github"></i> Github</a>
                   </p>
+                  <hr class="my-4">
                   <img src="/dist/img/affiliate-marketing-flow.png" style="width:100%;">
                 </div>
 

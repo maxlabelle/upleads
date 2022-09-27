@@ -27,22 +27,30 @@
 
                 <div class="form-group">
                   <label>Name</label>
-                  <input type="text" class="form-control" name="name">
+                  <input type="text" class="form-control" name="name" value="<?=(!empty($campaign)) ? $campaign->name : ''?>">
+                </div>
+
+                <div class="form-group">
+                  <label>Status</label>
+                  <select class="form-control" name="status">
+                    <option value="Active" <?=(!empty($campaign) && $campaign->status==='Active') ? 'selected' : ''?>>Active</option>
+                    <option value="Inactive" <?=(!empty($campaign) && $campaign->status==='Inactive') ? 'selected' : ''?>>Inactive</option>
+                  </select>
                 </div>
 
                 <div class="form-group">
                   <label>New affiliate requests approval</label>
                   <select class="form-control" name="affiliateApproval">
-                    <option value="auto">Automatic approval</option>
-                    <option value="manual">Manual approval</option>
+                    <option value="Automatic" <?=(!empty($campaign) && $campaign->affiliateApproval==='Automatic') ? 'selected' : ''?>>Automatic approval</option>
+                    <option value="Manual" <?=(!empty($campaign) && $campaign->affiliateApproval==='Manual') ? 'selected' : ''?>>Manual approval</option>
                   </select>
                 </div>
 
                 <!-- /.row -->
               </div>
               <div class="card-footer">
-                  <a href="/merchants/campaigns" class="btn btn-default">Cancel</a>
-                  <button type="submit" class="btn btn-success float-right">Save</button>
+                  <a href="/merchants/campaigns" class="btn btn-default"><i class="fa-solid fa-backward"></i> Cancel</a>
+                  <button type="submit" class="btn btn-success float-right"><i class="fa-solid fa-floppy-disk"></i> Save</button>
                 </div>
             </div>
             </form>

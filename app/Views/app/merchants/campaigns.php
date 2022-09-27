@@ -12,11 +12,8 @@
             <div class="card">
               <div class="card-header">
                 <div class="row">
-                  <div class="col-md-8">
+                  <div class="col-md-12">
                     <h5>Campaigns</h5>
-                  </div>
-                  <div class="col-md-4 text-right">
-                    <a href="/merchants/campaigns/new" class="btn btn-sm btn-success"><i class="fa-solid fa-circle-plus"></i></a>
                   </div>
                 </div>
               </div>
@@ -28,7 +25,7 @@
                   <tr>
                     <th>Name</th>
                     <th>Status</th>
-                    <th class="text-right"></th>
+                    <th class="text-left tiny-width"><a href="/merchants/campaigns/new" class="btn btn-sm btn-success"><i class="fa-solid fa-circle-plus"></i></a></th>
                   </tr>
                   </thead>
                   <tbody>
@@ -36,9 +33,9 @@
                       <tr>
                         <td><?=$row->name?></td>
                         <td><?=$row->status?></td>
-                        <td class="text-right">
+                        <td class="text-right tiny-width">
                           <a href="/merchants/campaigns/edit/<?=$row->id?>" class="btn btn-sm btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
-                          <a href="/merchants/campaigns/delete/<?=$row->id?>" class="btn btn-sm btn-danger"><i class="fa-solid fa-circle-xmark"></i></a>
+                          <a id="aDeleteBtn" href="/merchants/campaigns/delete/<?=$row->id?>" class="btn btn-sm btn-danger"><i class="fa-solid fa-circle-xmark"></i></a>
                         </td>
                       </tr>
                     <?php } ?>

@@ -10,6 +10,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
 use App\Libraries\Template;
+use App\Models\CampaignsModel;
 
 /**
  * Class BaseController
@@ -53,6 +54,8 @@ abstract class SecureBaseController extends Controller
         $this->db = \Config\Database::connect();
         $this->template = new Template();
         $this->request = \Config\Services::request();
+
+        $this->campaignsModel = new CampaignsModel();
     }
 
     public function _remap($method, ...$params)

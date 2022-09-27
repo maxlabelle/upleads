@@ -18,28 +18,28 @@
                 <div class="card-deck text-center">
                         <div class="card box-shadow">
                           <div class="card-header">
-                            <h4 class="my-0 font-weight-normal">Affiliates</h4>
+                            <h4 class="my-0 font-weight-normal">Self-hosted</h4>
                           </div>
                           <div class="card-body">
                             <h1 class=" pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
-                            <h5 class=" pricing-card-title">Get paid for each new merchant referrals</h5>
+                            <h5 class=" pricing-card-title">Free & open-souce (FOSS)</h5>
                             <ul class="list-unstyled mt-3 mb-4 text-teal">
-                              <li>Promote affiliate programs and make money</li>
+                              <li>You need your own hosting server.</li>
                             </ul>
-                            <a href="/auth/register?plan=affiliates" class="btn btn-lg btn-block btn-outline-info">Sign up for free</a>
+                            <a href="https://github.com/maxlabelle/upleads" class="btn btn-lg btn-block btn-outline-info"><i class="fa-solid fa-download"></i> Download</a>
                           </div>
                         </div>
                         <div class="card box-shadow">
                           <div class="card-header">
-                            <h4 class="my-0 font-weight-normal">Merchants</h4>
+                            <h4 class="my-0 font-weight-normal">Cloud</h4>
                           </div>
                           <div class="card-body">
-                            <h1 class=" pricing-card-title">$9.99 <small class="text-muted">/ mo</small></h1>
-                            <h5 class=" pricing-card-title">$89.99 <small class="text-muted">/ year (save 25%)</small></h5>
+                            <h1 class=" pricing-card-title">$4.99 <small class="text-muted">/ mo</small></h1>
+                            <h5 class=" pricing-card-title">$44.99 <small class="text-muted">/ year (save 25%)</small></h5>
                             <ul class="list-unstyled mt-3 mb-4 text-teal">
-                              <li>Boost your sales with unlimited conversion</li>
+                              <li>No need to download & install the platform.</li>
                             </ul>
-                            <a href="/auth/register?plan=merchants" class="btn btn-lg btn-block btn-primary">Get started</a>
+                            <a href="/auth/register" class="btn btn-lg btn-block btn-primary"><i class="fa-solid fa-cloud"></i> Get started</a>
                           </div>
                         </div>
 

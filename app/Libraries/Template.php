@@ -14,6 +14,10 @@ class Template {
         ? 'active' : '',
       'pricing' => (!empty($segments[0]) && isset($segments[1]) && $segments[1] == "pricing")
         ? 'active' : '',
+      'dashboard' => (!empty($segments[0]) && isset($segments[0]) && $segments[0] == "dashboard")
+        ? 'active' : '',
+      'campaigns' => (!empty($segments[0]) && isset($segments[1]) && $segments[1] == "campaigns")
+        ? 'active' : '',
     ];
 
     $content = '';

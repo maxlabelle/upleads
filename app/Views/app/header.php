@@ -36,9 +36,7 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="/dashboard" class="nav-link">Dashboard</a>
-      </li>
+
     </ul>
 
     <!-- Right navbar links -->
@@ -75,7 +73,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
            <li class="nav-item">
-             <a href="/dashboard" class="nav-link active">
+             <a href="/dashboard" class="nav-link <?=$_active['dashboard']?>">
                <i class="nav-icon fas fa-tachometer-alt"></i>
                <p>
                  Dashboard
@@ -84,8 +82,8 @@
            </li>
           <li class="nav-header">Merchants</li>
           <li class="nav-item">
-            <a href="/merchants/campaigns" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+            <a href="/merchants/campaigns" class="nav-link <?=$_active['campaigns']?>">
+              <i class="nav-icon fa-solid fa-diagram-project"></i>
               <p>
                 Campaigns
               </p>
@@ -95,15 +93,15 @@
           <li class="nav-header">Affiliates</li>
           <li class="nav-item">
             <a href="/affiliates/programs" class="nav-link">
-              <i class="nav-icon fas fa-calendar-alt"></i>
+              <i class="nav-icon fa-sharp fa-solid fa-messages-dollar"></i>
               <p>
-                Programs
+                Coupons
               </p>
             </a>
           </li>
           <li class="nav-item">
             <a href="/affiliates/links" class="nav-link">
-              <i class="nav-icon fas fa-calendar-alt"></i>
+              <i class="nav-icon fa-solid fa-link"></i>
               <p>
                 Links
               </p>
@@ -120,12 +118,12 @@
             </a>
           </li>
 
-          <li class="nav-header">User area</li>
+          <li class="nav-header">Admin</li>
           <li class="nav-item">
-            <a href="/profile" class="nav-link">
-              <i class="nav-icon fas fa-calendar-alt"></i>
+            <a href="/admin/users" class="nav-link">
+              <i class="nav-icon fa-solid fa-users"></i>
               <p>
-                My profile
+                Users
               </p>
             </a>
           </li>
