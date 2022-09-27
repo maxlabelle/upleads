@@ -98,4 +98,27 @@ class Merchants extends SecureBaseController
         ]);
       }
     }
+
+    public function settings() {
+      $userId = $this->session->get('userId');
+      $settings = $this->settingsModel->getSettings($userId);
+
+      $action = $this->request->getVar("action");
+      if ($action == "save") {
+        $name = $this->request->getVar("name");
+        $url_slug = slugify($this->request->getVar("url_slug"));
+        $this->settingsModel->slugExists($userId, $url_slug);
+        $theme = $this->request->getVar("theme");
+
+        $this->settingsModel->setValue($userId, "name", $name);
+        $this->settingsModel->setValue($userId, "url_slug", $url_slug);
+        $this->settingsModel->setValue($userId, "theme", $theme);
+
+        return redirect()->to('/merchants/settings');
+      }
+
+      return $this->template->view('merchants/settings', [
+        'settings' => $settings,
+      ]);
+    }
 }

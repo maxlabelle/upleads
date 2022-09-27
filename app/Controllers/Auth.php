@@ -15,7 +15,7 @@ class Auth extends BaseController
       return redirect()->to('/');
     }
 
-    public function login() {
+    public function login($merchantName = false) {
       $auth = false;
       $userId = $this->session->get('userId');
       if (!empty($userId)) {
@@ -49,12 +49,14 @@ class Auth extends BaseController
         }
       }
 
+      if ($merchantName) {
+      }
       return $this->template->view('login', ['error'=>$error], false, "website");
     }
 
-    public function register() {
+    public function register($merchantName = false) {
       $error = false;
-
+      // if merchantName set new user as role=Affiliate
       return $this->template->view('register', ['error'=>$error], false, "website");
     }
 }

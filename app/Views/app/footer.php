@@ -47,6 +47,7 @@
 <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <script>
   $(function () {
     $('#aDeleteBtn').click(function(e) {
@@ -68,7 +69,10 @@
       "responsive": true,
     });
   });
-  $('.select2').select2()
+  $('.select2').select2();
+  $("input[data-bootstrap-switch]").each(function(){
+  $(this).bootstrapSwitch('state', $(this).prop('checked'));
+})
 </script>
 </body>
 </html>

@@ -14,7 +14,7 @@ function suid($length = 8) {
   return $str;
 }
 
-function hasRole($roles, $role) {  
+function hasRole($roles, $role) {
   if (!empty($roles)) {
     $roles = json_decode($roles, true);
     if (is_array($roles) && (in_array("Admin", $roles) || in_array($role,$roles))) {
@@ -47,4 +47,30 @@ function isActive($segment) {
   }
 
   return $class;
+}
+
+function slugify($text, string $divider = '-') {
+  // replace non letter or digits by divider
+  $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+
+  // transliterate
+  $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+  // remove unwanted characters
+  $text = preg_replace('~[^-\w]+~', '', $text);
+
+  // trim
+  $text = trim($text, $divider);
+
+  // remove duplicate divider
+  $text = preg_replace('~-+~', $divider, $text);
+
+  // lowercase
+  $text = strtolower($text);
+
+  if (empty($text)) {
+    return 'n-a';
+  }
+
+  return $text;
 }

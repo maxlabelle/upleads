@@ -28,8 +28,11 @@ class BasicModel extends Model
       return $this->db->insertID();
     }
 
-    public function edit($id, $data) {
-      $this->db->table($this->table)->where('id', $id)->update($data);
-      return $this->db->insertID();
+    public function edit($needle, $data) {
+      if (is_array($needle)) {
+        return $this->db->table($this->table)->where($needle)->update($data);
+      } else {
+        return $this->db->table($this->table)->where('id', $needle)->update($data);
+      }
     }
 }

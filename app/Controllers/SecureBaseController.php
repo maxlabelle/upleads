@@ -12,6 +12,7 @@ use Psr\Log\LoggerInterface;
 use App\Libraries\Template;
 use App\Models\CampaignsModel;
 use App\Models\UsersModel;
+use App\Models\SettingsModel;
 
 /**
  * Class BaseController
@@ -59,6 +60,7 @@ abstract class SecureBaseController extends Controller
 
         $this->campaignsModel = new CampaignsModel();
         $this->usersModel = new UsersModel();
+        $this->settingsModel = new SettingsModel();
     }
 
     public function _remap($method, ...$params)

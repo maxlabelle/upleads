@@ -94,10 +94,18 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/merchants/campaigns" class="nav-link  <?=isActive('affiliates')?>">
+            <a href="/merchants/affiliates" class="nav-link  <?=isActive('affiliates')?>">
               <i class="nav-icon fa-solid fa-users-viewfinder"></i>
               <p>
                 Affiliates
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/merchants/settings" class="nav-link  <?=isActive('settings')?>">
+              <i class="nav-icon fa-solid fa-gear"></i>
+              <p>
+                Settings
               </p>
             </a>
           </li>
@@ -106,7 +114,7 @@
           <?php if (hasRole(roles(), "Affiliate")) { ?>
           <li class="nav-header">Affiliate</li>
           <li class="nav-item">
-            <a href="/affiliates/programs" class="nav-link">              
+            <a href="/affiliates/programs" class="nav-link">
               <i class="nav-icon fa-solid fa-coins"></i>
               <p>
                 Coupons
