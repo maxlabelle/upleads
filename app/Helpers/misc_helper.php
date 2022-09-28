@@ -79,3 +79,14 @@ function slugify($text, string $divider = '-') {
 
   return $text;
 }
+
+function getImage($path) {
+  if(($image = file_get_contents($path)) === FALSE)  {
+    return false;
+  }
+
+  $file = new \CodeIgniter\Files\File($path);
+  $mimeType = $file->getMimeType();
+
+  return ['file'=>$image,'mimeType'=>$mimeType];
+}

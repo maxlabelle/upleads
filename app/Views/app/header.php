@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
+  
   <link rel="stylesheet" href="/dist/css/adminlte.css">
 
   <link rel="icon" type="image/x-icon" href="/dist/img/upleads.png">
@@ -61,7 +62,7 @@
   <aside class="main-sidebar <?=(myConfig()['theme']=='Dark') ? 'sidebar-dark-primary' : ''?> elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-      <img src="/dist/img/upleads.png" alt="Upleads Logo" class="brand-image" style="opacity: .8">
+      <img src="/dist/img/upleads<?=(myConfig()['theme']=='Dark') ? '-white' : ''?>.png" alt="Upleads Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-light">Upleads</span>
     </a>
 

@@ -15,7 +15,7 @@ class Auth extends BaseController
       return redirect()->to('/');
     }
 
-    public function login($merchantName = false) {
+    public function login($merchantUrlSlug = false) {
       $auth = false;
       $userId = $this->session->get('userId');
       if (!empty($userId)) {
@@ -49,9 +49,16 @@ class Auth extends BaseController
         }
       }
 
-      if ($merchantName) {
+      if ($merchantUrlSlug) {
+        $settings = $this->settingsModel->getWhereSingle(['merchant_url_slug'=>$merchantUrlSlug]);
+        $config = $this->settingsModel->getConfig($settings->user_id);
       }
-      return $this->template->view('login', ['error'=>$error], false, "website");
+      return $this->template->view('login', [
+        'error'=>$error,
+        'merchant'=>$merchantUrlSlug,
+        'settings'=>$settings,
+        'config'=>$config,
+      ], false, "website");
     }
 
     public function register($merchantName = false) {

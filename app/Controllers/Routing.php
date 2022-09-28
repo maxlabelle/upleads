@@ -8,6 +8,34 @@ class Routing extends BaseController
         return redirect()->to('/');
     }
 
+    public function merchantImage($type, $merchantUrlSlug, $thumbnail = false) {
+      $settings = $this->settingsModel->getWhereSingle(['merchant_url_slug'=>$merchantUrlSlug]);
+      $path = '';
+
+      if ($type=="bg") {
+        $path.=$settings->merchant_bg_path;
+      }
+
+      if ($type=="logo") {
+        $path.=$settings->merchant_logo_path;
+      }
+
+      if ($thumbnail) {
+        $ext = pathinfo($path, PATHINFO_EXTENSION);
+        $filename = pathinfo($path, PATHINFO_FILENAME);
+        $path = "{$filename}_thumb.{$ext}";
+      }
+
+      $path = WRITEPATH.'uploads/'.$settings->user_id."/".$path;
+
+      $image = getImage($path);
+      if ($image === FALSE)  {
+        show_404();
+      }
+      header("Content-Type: {$image['mimeType']}");
+      return $image['file'];
+    }
+
     public function redirect($affiliateLinkId) {
       $smalluid = suid();
       return redirect()->to("/?_ulaid=$affiliateLinkId&_ulsuid=$smalluid");

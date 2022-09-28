@@ -39,7 +39,11 @@ $routes->get('/', 'Home::index');
 
 $routes->get('a/(:segment)/login', 'Auth::login/$1');
 $routes->get('a/(:segment)/register', 'Auth::register/$1');
-$routes->get('a/(:segment)/home', 'Home::merchant/$1');
+$routes->get('a/(:segment)/home', 'Routing::merchantHome/$1');
+$routes->get('a/(:segment)/logo', 'Routing::merchantImage/logo/$1');
+$routes->get('a/(:segment)/bg/', 'Routing::merchantImage/bg/$1');
+$routes->get('a/(:segment)/logo/(:segment)', 'Routing::merchantImage/logo/$1/$2');
+$routes->get('a/(:segment)/bg/(:segment)', 'Routing::merchantImage/bg/$1/$2');
 
 $routes->get('r/(:segment)', 'Routing::redirect/$1');
 $routes->get('v/(:segment)', 'Routing::tracking/$1/visit');

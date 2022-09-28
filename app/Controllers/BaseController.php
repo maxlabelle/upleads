@@ -10,6 +10,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
 use App\Libraries\Template;
+use App\Models\SettingsModel;
 
 /**
  * Class BaseController
@@ -53,5 +54,7 @@ abstract class BaseController extends Controller
         $this->db = \Config\Database::connect();
         $this->template = new Template();
         $this->request = \Config\Services::request();
+
+        $this->settingsModel = new SettingsModel();
     }
 }

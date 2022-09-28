@@ -106,6 +106,52 @@ class Merchants extends SecureBaseController
 
       $action = $this->request->getVar("action");
       if ($action == "save") {
+        $merchant_logo = $this->request->getFile('merchant_logo');
+        $uploadsPath = WRITEPATH . "uploads/$userId";
+        if ($merchant_logo->isValid()) {
+          $uid = uid();
+          $ext = $merchant_logo->guessExtension();
+          $merchant_logo_path = "{$uid}.$ext";
+          $merchant_logo_thumb_path = "{$uid}_thumb.$ext";
+          $merchant_logo->move($uploadsPath, $merchant_logo_path);
+          $this->settingsModel->edit(['user_id' => $userId], [
+            'merchant_logo_path' => $merchant_logo_path,
+          ]);
+
+          $image = \Config\Services::image();
+
+          try {
+              $image->withFile("$uploadsPath/$merchant_logo_path")
+                  ->fit(100, 100, 'center')
+                  ->save("$uploadsPath/$merchant_logo_thumb_path");
+          } catch (CodeIgniter\Images\Exceptions\ImageException $e) {
+              echo $e->getMessage();
+          }
+
+        }
+        $merchant_bg = $this->request->getFile('merchant_bg');
+        if ($merchant_bg->isValid()) {
+          $uid = uid();
+          $ext = $merchant_bg->guessExtension();
+          $merchant_bg_path = "{$uid}.$ext";
+          $merchant_bg_thumb_path = "{$uid}_thumb.$ext";
+          $merchant_bg->move($uploadsPath, $merchant_bg_path);
+          $this->settingsModel->edit(['user_id' => $userId], [
+            'merchant_bg_path' => $merchant_bg_path,
+          ]);
+
+          $image = \Config\Services::image();
+
+          try {
+              $image->withFile("$uploadsPath/$merchant_bg_path")
+                  ->fit(100, 100, 'center')
+                  ->save("$uploadsPath/$merchant_bg_thumb_path");
+          } catch (CodeIgniter\Images\Exceptions\ImageException $e) {
+              echo $e->getMessage();
+          }
+
+        }
+
         $name = $this->request->getVar("name");
         $theme = $this->request->getVar("theme");
         $url_slug = slugify($name);
@@ -116,8 +162,9 @@ class Merchants extends SecureBaseController
           $errors[] = "Merchant Name is already taken.";
         }
 
-        $this->settingsModel->edit(['user_id' => $userId], ['merchant_url_slug' => $url_slug]);
-
+        $this->settingsModel->edit(['user_id' => $userId], [
+          'merchant_url_slug' => $url_slug,
+        ]);
         $this->settingsModel->setValue($userId, "name", $name);
         $this->settingsModel->setValue($userId, "theme", $theme);
 
@@ -125,7 +172,7 @@ class Merchants extends SecureBaseController
           return redirect()->to('/merchants/settings');
         }
       }
-      
+
       $config = $this->settingsModel->getConfig($userId);
       $settings = $this->settingsModel->getWhereSingle(['user_id'=>$userId]);
 

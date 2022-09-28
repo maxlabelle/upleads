@@ -21,7 +21,7 @@
                 </div>
               </div>
               <!-- /.card-header -->
-              <form method="post">
+              <form method="post"  enctype="multipart/form-data">
               <div class="card-body">
                 <input type="hidden" name="action" value="save">
                 <?php foreach($errors as $error) { ?>
@@ -45,6 +45,34 @@
                     <option value="Dark" <?=(!empty($config) && $config['theme']==='Dark') ? 'selected' : ''?>>Dark</option>
                     <option value="Light" <?=(!empty($config) && $config['theme']==='Light') ? 'selected' : ''?>>Light</option>
                   </select>
+                </div>
+
+
+                <div class="form-group">
+                  <label>Logo</label>
+                  <hr/>
+                  <div class="row">
+                    <div class="col-md-10">
+                      <input type="file" class="from-control" name="merchant_logo">
+                    </div>
+                    <div class="col-md-2 text-right">
+                      <img src="<?=(!empty($settings) && $settings->merchant_logo_path) ? base_url().'/a/'.$settings->merchant_url_slug.'/logo/thumb' : base_url().'/dist/img/default-150x150.png' ?>" class="img-fluid">
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label>Login & Register page background</label>
+                  <hr/>
+                  <div class="row">
+                    <div class="col-md-10">
+                      <input type="file" class="from-control" name="merchant_bg">
+                    </div>
+                    <div class="col-md-2 text-right">
+                      <img src="<?=(!empty($settings) && $settings->merchant_bg_path) ? base_url().'/a/'.$settings->merchant_url_slug.'/bg/thumb' : base_url().'/dist/img/default-150x150.png' ?>" class="img-fluid">
+                    </div>
+                  </div>
                 </div>
 
                 <!-- /.row -->

@@ -15,15 +15,29 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="/dist/css/adminlte.css">
 
-  <link rel="icon" type="image/x-icon" href="/dist/img/upleads.png">
+  <link rel="icon" type="image/x-icon" href="<?=(!empty($settings) && $settings->merchant_logo_path) ? base_url().'/a/'.$settings->merchant_url_slug.'/logo/thumb' : base_url().'/dist/img/default-150x150.png' ?>">
+  <style>
 
+  .login-page,
+  .register-page {
+    background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),url(<?=(!empty($settings) && $settings->merchant_bg_path) ? '/a/'.$settings->merchant_url_slug.'/bg' : '/dist/img/default-150x150.png' ?>);
+  }
+
+  </style>
 </head>
 <body class="hold-transition login-page dark-mode">
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="/" class="h1"><b>Up</b>leads</a>
+      <a href="/" class="h1">
+        <?php if ($merchant) { ?>
+          <img src="<?=(!empty($settings) && $settings->merchant_logo_path) ? base_url().'/a/'.$settings->merchant_url_slug.'/logo/thumb' : base_url().'/dist/img/default-150x150.png' ?>" class="img-fluid">
+          <p><?=$config['name']?></p>
+        <?php } else { ?>
+          <b>Up</b>leads
+        <?php } ?>
+      </a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
