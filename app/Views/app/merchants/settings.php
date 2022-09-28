@@ -24,22 +24,26 @@
               <form method="post">
               <div class="card-body">
                 <input type="hidden" name="action" value="save">
-
+                <?php foreach($errors as $error) { ?>
+                  <div class="alert alert-danger" role="alert">
+                    <?=$error?>
+                  </div>
+                <?php } ?>
                 <div class="form-group">
                   <label>Merchant name</label>
-                  <input type="text" class="form-control" name="name" value="<?=(!empty($settings)) ? $settings['name'] : ''?>">
+                  <input type="text" class="form-control" required name="name" value="<?=(!empty($config)) ? $config['name'] : ''?>">
                 </div>
 
                 <div class="form-group">
                   <label>Merchant URL slug</label>
-                  <input type="text" class="form-control" name="url_slug" value="<?=(!empty($settings)) ? $settings['url_slug'] : ''?>">
+                  <input type="text" disabled="disabled" readonly class="form-control" name="url_slug" value="<?=(!empty($settings)) ? $settings->merchant_url_slug : ''?>">
                 </div>
 
                 <div class="form-group">
                   <label>Theme</label>
                   <select class="form-control" name="theme">
-                    <option value="Dark" <?=(!empty($settings) && $settings['theme']==='Dark') ? 'selected' : ''?>>Dark</option>
-                    <option value="Light" <?=(!empty($settings) && $settings['theme']==='Light') ? 'selected' : ''?>>Light</option>
+                    <option value="Dark" <?=(!empty($config) && $config['theme']==='Dark') ? 'selected' : ''?>>Dark</option>
+                    <option value="Light" <?=(!empty($config) && $config['theme']==='Light') ? 'selected' : ''?>>Light</option>
                   </select>
                 </div>
 

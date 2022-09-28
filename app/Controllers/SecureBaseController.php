@@ -70,12 +70,14 @@ abstract class SecureBaseController extends Controller
 
         if (!empty($userId)) {
           $user = $this->usersModel->getWhereSingle(['id'=>$userId]);
+          $config = $this->settingsModel->getConfig($userId);
           if ($user) {
             if ($user->status === "Active") {
               $auth = true;
 
               $this->session->set([
                 'roles' => $user->roles,
+                'config' => $config,
               ]);
 
               $uri = service('uri');

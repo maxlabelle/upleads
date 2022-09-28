@@ -29,6 +29,11 @@ function roles() {
   return $session->get('roles');
 }
 
+function myConfig() {
+  $session = session();
+  return $session->get('config');
+}
+
 function isActive($segment) {
   $uri = service('uri');
   $segments = $uri->getSegments();

@@ -100,25 +100,39 @@ class Merchants extends SecureBaseController
     }
 
     public function settings() {
+      $errors = [];
+
       $userId = $this->session->get('userId');
-      $settings = $this->settingsModel->getSettings($userId);
 
       $action = $this->request->getVar("action");
       if ($action == "save") {
         $name = $this->request->getVar("name");
-        $url_slug = slugify($this->request->getVar("url_slug"));
-        $this->settingsModel->slugExists($userId, $url_slug);
         $theme = $this->request->getVar("theme");
+        $url_slug = slugify($name);
+
+        if ($this->settingsModel->slugExists($userId, $url_slug)) {
+          $url_slug = '';
+          $name = '';
+          $errors[] = "Merchant Name is already taken.";
+        }
+
+        $this->settingsModel->edit(['user_id' => $userId], ['merchant_url_slug' => $url_slug]);
 
         $this->settingsModel->setValue($userId, "name", $name);
-        $this->settingsModel->setValue($userId, "url_slug", $url_slug);
         $this->settingsModel->setValue($userId, "theme", $theme);
 
-        return redirect()->to('/merchants/settings');
+        if (!$errors) {
+          return redirect()->to('/merchants/settings');
+        }
       }
+      
+      $config = $this->settingsModel->getConfig($userId);
+      $settings = $this->settingsModel->getWhereSingle(['user_id'=>$userId]);
 
       return $this->template->view('merchants/settings', [
+        'config' => $config,
         'settings' => $settings,
+        'errors' => $errors,
       ]);
     }
 }

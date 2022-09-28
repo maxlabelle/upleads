@@ -9,24 +9,30 @@ class SettingsModel extends BasicModel
     protected $table = "settings";
 
     public function slugExists($userId, $slug) {
-      $_settings = $this->getWhere([]);
-      foreach($_settings->getResult() as $row) {
-        print_r($row);
-      }
-      die();
-    }
-
-    public function getSettings($userId) {
-      $_settings = $this->getWhereSingle(['user_id'=>$userId]);
-
-      $settings = [];
-      if (!empty($_settings->settings)) {
-        $settings = @json_decode($_settings->settings, true);
-        if (!is_array($settings)) {
-          $settings = [];
+      $settings = $this->getWhere([]);
+      $found = false;
+      foreach($settings->getResult() as $row) {
+        if ($row->user_id != $userId) {
+          if ($row->merchant_url_slug === $slug) {
+            $found = true;
+            break;
+          }
         }
       }
-      return $settings;
+      return $found;
+    }
+
+    public function getConfig($userId) {
+      $settings = $this->getWhereSingle(['user_id'=>$userId]);
+
+      $config = [];
+      if (!empty($settings->config)) {
+        $config = @json_decode($settings->config, true);
+        if (!is_array($config)) {
+          $config = [];
+        }
+      }
+      return $config;
     }
 
     public function setValue($userId, $key, $value) {
@@ -34,15 +40,15 @@ class SettingsModel extends BasicModel
         $this->create([
           'id' => uid(),
           'user_id' => $userId,
-          'settings' => json_encode([]),
+          'config' => json_encode([]),
         ]);
       }
 
-      $settings = $this->getSettings($userId);
+      $config = $this->getConfig($userId);
 
-      $settings[$key]=$value;
+      $config[$key]=$value;
 
-      $this->edit(['user_id'=>$userId],['settings'=>json_encode($settings)]);
+      $this->edit(['user_id'=>$userId],['config'=>json_encode($config)]);
     }
 
 }

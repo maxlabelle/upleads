@@ -23,7 +23,7 @@
 
   <link rel="icon" type="image/x-icon" href="/dist/img/upleads.png">
 </head>
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed">
+<body class="hold-transition <?=(myConfig()['theme']=='Dark') ? 'dark-mode' : ''?> sidebar-mini layout-fixed layout-navbar-fixed">
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -32,7 +32,7 @@
   </div>
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark">
+  <nav class="main-header navbar navbar-expand <?=(myConfig()['theme']=='Dark') ? 'navbar-dark' : ''?>">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -58,7 +58,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar <?=(myConfig()['theme']=='Dark') ? 'sidebar-dark-primary' : ''?> elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
       <img src="/dist/img/upleads.png" alt="Upleads Logo" class="brand-image" style="opacity: .8">
