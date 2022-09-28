@@ -28,7 +28,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="/dist/img/upleads.png" alt="Upleads" height="60" width="60">
+    <img class="animation__wobble" src="/dist/img/upleads<?=(myConfig()['theme']=='Dark') ? '-white' : ''?>.png" alt="Upleads" height="60" width="60">
   </div>
 
   <!-- Navbar -->
