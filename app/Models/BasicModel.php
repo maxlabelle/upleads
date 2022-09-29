@@ -6,6 +6,20 @@ use CodeIgniter\Model;
 
 class BasicModel extends Model
 {
+    public function exists($exclude_column, $exclude_value, $column, $needle, $where = []) {
+      $settings = $this->getWhere($where);
+      $found = false;
+      foreach($settings->getResult() as $row) {
+        if ($row->{$exclude_column} != $exclude_value) {
+          if ($row->{$column} === $needle) {
+            $found = true;
+            break;
+          }
+        }
+      }
+      return $found;
+    }
+
     public function getWhere($data) {
       return $this->db->table($this->table)->getWhere($data);
     }

@@ -36,9 +36,13 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->add('/auth/login', 'Auth::login');
+$routes->add('/auth/register', 'Auth::register');
+$routes->get('/auth/logout', 'Auth::logout');
 
-$routes->get('a/(:segment)/login', 'Auth::login/$1');
-$routes->get('a/(:segment)/register', 'Auth::register/$1');
+$routes->add('a/(:segment)/login', 'Auth::login/$1');
+$routes->add('a/(:segment)/register', 'Auth::register/$1');
+
 $routes->get('a/(:segment)/home', 'Routing::merchantHome/$1');
 $routes->get('a/(:segment)/logo', 'Routing::merchantImage/logo/$1');
 $routes->get('a/(:segment)/bg/', 'Routing::merchantImage/bg/$1');

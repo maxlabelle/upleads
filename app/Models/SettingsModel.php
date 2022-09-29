@@ -9,17 +9,11 @@ class SettingsModel extends BasicModel
     protected $table = "settings";
 
     public function slugExists($userId, $slug) {
-      $settings = $this->getWhere([]);
-      $found = false;
-      foreach($settings->getResult() as $row) {
-        if ($row->user_id != $userId) {
-          if ($row->merchant_url_slug === $slug) {
-            $found = true;
-            break;
-          }
-        }
-      }
-      return $found;
+      return $this->exists('user_id', $userId, 'merchant_url_slug', $slug);
+    }
+
+    public function domainExists($userId, $domain) {
+      return $this->exists('user_id', $userId, 'merchant_domain', $domain);
     }
 
     public function getConfig($userId) {

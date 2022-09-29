@@ -153,18 +153,26 @@ class Merchants extends SecureBaseController
         }
 
         $name = $this->request->getVar("name");
+        $merchant_domain = $this->request->getVar("merchant_domain");
         $theme = $this->request->getVar("theme");
         $url_slug = slugify($name);
 
         if ($this->settingsModel->slugExists($userId, $url_slug)) {
           $url_slug = '';
           $name = '';
-          $errors[] = "Merchant Name is already taken.";
+          $errors[] = "Merchant name is already taken.";
+        }
+
+        if ($this->settingsModel->domainExists($userId, $merchant_domain)) {
+          $merchant_domain = '';
+          $errors[] = "Merchant domain is already taken.";
         }
 
         $this->settingsModel->edit(['user_id' => $userId], [
           'merchant_url_slug' => $url_slug,
+          'merchant_domain' => $merchant_domain,
         ]);
+
         $this->settingsModel->setValue($userId, "name", $name);
         $this->settingsModel->setValue($userId, "theme", $theme);
 

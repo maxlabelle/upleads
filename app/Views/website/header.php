@@ -25,7 +25,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-dark">
     <div class="container">
-      <a href="/index3.html" class="navbar-brand">
+      <a href="/" class="navbar-brand">
         <img src="/dist/img/upleads.png" alt="Upleads Logo" class="brand-image" style="opacity: .8">
         <span class="brand-text font-weight-light">Upleads</span>
       </a>
@@ -39,6 +39,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="navbar-nav">
           <li class="nav-item">
             <a href="/" class="nav-link <?=isActive('home')?>">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/home/features" class="nav-link  <?=isActive('features')?>">Features</a>
           </li>
           <li class="nav-item">
             <a href="/home/pricing" class="nav-link  <?=isActive('pricing')?>">Pricing</a>

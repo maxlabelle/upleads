@@ -17,6 +17,22 @@ class Auth extends BaseController
 
     public function login($merchantUrlSlug = false) {
       $auth = false;
+      $settings = false;
+      $config = false;
+      $error = false;
+
+      if (!$merchantUrlSlug && $this->merchant_url_slug) {
+          $merchantUrlSlug = $this->merchant_url_slug;
+      }
+      
+      if ($merchantUrlSlug) {
+        $settings = $this->settingsModel->getWhereSingle(['merchant_url_slug'=>$merchantUrlSlug]);
+        if (!$settings) {
+          return redirect()->to('/');
+        }
+        $config = $this->settingsModel->getConfig($settings->user_id);
+      }
+
       $userId = $this->session->get('userId');
       if (!empty($userId)) {
         $query = $this->db->table('users')->getWhere(['id'=>$userId]);
@@ -28,7 +44,6 @@ class Auth extends BaseController
         return redirect()->to('/dashboard');
       }
 
-      $error = false;
       $action = $this->request->getVar('action');
       if ($action == "login") {
         $error = "Invalid email or password";
@@ -49,10 +64,6 @@ class Auth extends BaseController
         }
       }
 
-      if ($merchantUrlSlug) {
-        $settings = $this->settingsModel->getWhereSingle(['merchant_url_slug'=>$merchantUrlSlug]);
-        $config = $this->settingsModel->getConfig($settings->user_id);
-      }
       return $this->template->view('login', [
         'error'=>$error,
         'merchant'=>$merchantUrlSlug,
@@ -61,9 +72,72 @@ class Auth extends BaseController
       ], false, "website");
     }
 
-    public function register($merchantName = false) {
+    public function register($merchantUrlSlug = false) {
       $error = false;
-      // if merchantName set new user as role=Affiliate
-      return $this->template->view('register', ['error'=>$error], false, "website");
+      $settings = false;
+      $config = false;
+
+      if (!$merchantUrlSlug && $this->merchant_url_slug) {
+          $merchantUrlSlug = $this->merchant_url_slug;
+      }
+
+      if ($merchantUrlSlug) {
+        $settings = $this->settingsModel->getWhereSingle(['merchant_url_slug'=>$merchantUrlSlug]);
+        if (!$settings) {
+          return redirect()->to('/');
+        }
+        $config = $this->settingsModel->getConfig($settings->user_id);
+      }
+
+      $action = $this->request->getVar('action');
+      if ($action == "register") {
+        $error = "Passwords do not match.";
+
+        $name = $this->request->getVar('name');
+        $email = $this->request->getVar('email');
+        $password = $this->request->getVar('password');
+        $passwordconf = $this->request->getVar('passwordconf');
+
+        if (
+          $password === $passwordconf
+        ) {
+          $userId = uid();
+
+          $roles = [];
+          $merchantId = false;
+
+          if ($merchantUrlSlug) {
+            $roles[] = 'Affiliate';
+            $merchantId = $settings->user_id;
+          } else {
+            $roles[] = "Merchant";
+          }
+
+          $roles = json_encode($roles);
+          $this->usersModel->create([
+            'id' => $userId,
+            'name' => $name,
+            'email' => $email,
+            'merchant_id' => $merchantId,
+            'passwordhash' => password_hash($password, PASSWORD_BCRYPT),
+            'status' => 'Active',
+            'roles' => $roles,
+          ]);
+
+          $this->session->set([
+            'userId'=>$userId,
+            'roles'=>$roles,
+          ]);
+
+          return redirect()->to('/dashboard');
+        }
+      }
+
+      return $this->template->view('register', [
+        'error'=>$error,
+        'merchant'=>$merchantUrlSlug,
+        'settings'=>$settings,
+        'config'=>$config,
+      ], false, "website");
     }
 }

@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
-  
+
   <link rel="stylesheet" href="/dist/css/adminlte.css">
 
   <link rel="icon" type="image/x-icon" href="/dist/img/upleads.png">
@@ -33,7 +33,7 @@
   </div>
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand <?=(myConfig()['theme']=='Dark') ? 'navbar-dark' : ''?>">
+  <nav class="main-header navbar navbar-expand <?=(myConfig()['theme']=='Dark') ? 'navbar-dark' : 'navbar-white navbar-light'?>">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">

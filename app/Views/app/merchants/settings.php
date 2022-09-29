@@ -29,9 +29,15 @@
                     <?=$error?>
                   </div>
                 <?php } ?>
+
                 <div class="form-group">
                   <label>Merchant name</label>
                   <input type="text" class="form-control" required name="name" value="<?=(!empty($config)) ? $config['name'] : ''?>">
+                </div>
+
+                <div class="form-group">
+                  <label>Merchant domain (www.domain.com)</label>
+                  <input type="text" class="form-control" required name="merchant_domain" value="<?=(!empty($settings)) ? $settings->merchant_domain : ''?>">
                 </div>
 
                 <div class="form-group">

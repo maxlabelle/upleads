@@ -11,6 +11,7 @@ use Psr\Log\LoggerInterface;
 
 use App\Libraries\Template;
 use App\Models\SettingsModel;
+use App\Models\UsersModel;
 
 /**
  * Class BaseController
@@ -56,5 +57,15 @@ abstract class BaseController extends Controller
         $this->request = \Config\Services::request();
 
         $this->settingsModel = new SettingsModel();
+        $this->usersModel = new UsersModel();
+
+        $this->merchant_url_slug = false;
+        $current_domain = $_SERVER['SERVER_NAME'];
+        $settings = $this->settingsModel->getWhereSingle(['merchant_domain'=>$current_domain]);
+        if ($settings) {
+          $config = config(App::class);
+          $config->baseURL = $current_domain;
+          $this->merchant_url_slug = $settings->merchant_url_slug;
+        }
     }
 }
