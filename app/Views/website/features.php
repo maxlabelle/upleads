@@ -39,7 +39,7 @@
                       <i class="fa-solid fa-hand-holding-dollar fa-4x"></i>
                     </div>
                     <div>
-                      <h2>Affordable cloud-version</h2>
+                      <h2>Affordable</h2>
                       <p>Our cloud version is the most affordable affiliate tracking software solution around.</p>
                     </div>
                   </div>
