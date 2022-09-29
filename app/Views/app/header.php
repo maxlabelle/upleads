@@ -110,7 +110,7 @@
               </p>
             </a>
           </li>
-          <?php } ?>
+          <?php } else ?>
 
           <?php if (hasRole(roles(), "Affiliate")) { ?>
           <li class="nav-header">Affiliate</li>
