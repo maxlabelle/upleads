@@ -111,7 +111,7 @@
         </a>
       </div>
 
-      <a href="/auth/login" class="text-center">I already have a membership</a>
+      <a href="<?=str_replace("register", "login", current_url())?>" class="text-center">I already have a membership</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

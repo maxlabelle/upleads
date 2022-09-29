@@ -18,13 +18,13 @@ class Auth extends BaseController
     public function login($merchantUrlSlug = false) {
       $auth = false;
       $settings = false;
-      $config = false;
+      $config = getDefaultConfig();
       $error = false;
 
       if (!$merchantUrlSlug && $this->merchant_url_slug) {
           $merchantUrlSlug = $this->merchant_url_slug;
       }
-      
+
       if ($merchantUrlSlug) {
         $settings = $this->settingsModel->getWhereSingle(['merchant_url_slug'=>$merchantUrlSlug]);
         if (!$settings) {
@@ -75,7 +75,7 @@ class Auth extends BaseController
     public function register($merchantUrlSlug = false) {
       $error = false;
       $settings = false;
-      $config = false;
+      $config = getDefaultConfig();
 
       if (!$merchantUrlSlug && $this->merchant_url_slug) {
           $merchantUrlSlug = $this->merchant_url_slug;

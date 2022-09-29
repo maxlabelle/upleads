@@ -20,6 +20,8 @@
 # APP
 #--------------------------------------------------------------------
 
+# app.defaultTheme = 'Dark'
+
 # app.baseURL = ''
 # If you have trouble with `.`, you could also use `_`.
 # app_baseURL = ''

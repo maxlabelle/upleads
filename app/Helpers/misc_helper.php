@@ -90,3 +90,7 @@ function getImage($path) {
 
   return ['file'=>$image,'mimeType'=>$mimeType];
 }
+
+function getDefaultConfig() {
+  return ['theme'=>getenv('app.defaultTheme')];
+}

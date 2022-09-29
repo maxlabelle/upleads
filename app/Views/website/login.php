@@ -99,7 +99,7 @@
         <a href="forgot-password.html">I forgot my password</a>
       </p>
       <p class="mb-0">
-        <a href="/auth/register" class="text-center">Register a new membership</a>
+        <a href="<?=str_replace("login", "register", current_url())?>" class="text-center">Register a new membership</a>
       </p>
     </div>
     <!-- /.card-body -->
