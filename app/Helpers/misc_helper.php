@@ -38,16 +38,16 @@ function isActive($segment) {
   $uri = service('uri');
   $segments = $uri->getSegments();
 
-  $class = (empty($segments[0]) && $segment === 'home')
+  $class = (empty($segments) && $segment == "home")
     ? 'active' : '';
 
   if (empty($class)) {
-    $class = (!empty($segments[0]) && isset($segments[0]) && $segments[0] === $segment)
+    $class = (!empty($segments) && isset($segments[0]) && $segment != "home" && $segments[0] === $segment)
       ? 'active' : '';
   }
 
   if (empty($class)) {
-    $class = (!empty($segments[0]) && isset($segments[1]) && $segments[1] === $segment)
+    $class = (!empty($segments) && isset($segments[1]) && $segments[1] === $segment)
     ? 'active' : '';
   }
 

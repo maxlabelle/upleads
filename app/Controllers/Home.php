@@ -13,7 +13,7 @@ class Home extends BaseController
     }
 
     public function features() {
-        return $this->template->view('pricing', [], true, "website");
+        return $this->template->view('features', [], true, "website");
     }
 
     public function merchant($merchantName = false) {
