@@ -70,14 +70,19 @@ abstract class SecureBaseController extends Controller
 
         if (!empty($userId)) {
           $user = $this->usersModel->getWhereSingle(['id'=>$userId]);
-          $config = $this->settingsModel->getConfig(($user->merchant_id) ? $user->merchant_id : $userId);
+          $settings = $this->settingsModel->getWhereSingle(
+            [
+              'user_id' =>
+                ($user->merchant_id) ? $user->merchant_id : $userId
+            ]
+          );
           if ($user) {
             if ($user->status === "Active") {
               $auth = true;
 
               $this->session->set([
                 'roles' => $user->roles,
-                'config' => $config,
+                'theme' => $settings->merchant_theme,
               ]);
 
               $uri = service('uri');

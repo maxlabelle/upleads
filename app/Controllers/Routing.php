@@ -10,7 +10,6 @@ class Routing extends BaseController
 
     public function merchantHome($merchantUrlSlug = false) {
       $settings = false;
-      $config = getDefaultConfig();
 
       if (!$merchantUrlSlug && $this->merchant_url_slug) {
           $merchantUrlSlug = $this->merchant_url_slug;
@@ -21,13 +20,11 @@ class Routing extends BaseController
         if (!$settings) {
           return redirect()->to('/');
         }
-        $config = $this->settingsModel->getConfig($settings->user_id);
       }
 
       return $this->template->view('merchantHome', [
         'merchant'=>$merchantUrlSlug,
         'settings'=>$settings,
-        'config'=>$config,
       ], false, "website");
     }
 

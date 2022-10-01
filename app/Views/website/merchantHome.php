@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?=$config['name']?></title>
+  <title><?=$settings->merchant_name?></title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -19,15 +19,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link rel="icon" type="image/x-icon" href="<?=(!empty($settings) && $settings->merchant_logo_path) ? base_url().'/a/'.$settings->merchant_url_slug.'/logo/thumb' : base_url().'/dist/img/upleads.png' ?>">
 
 </head>
-<body class="hold-transition layout-top-nav <?=(isset($config['theme']) && $config['theme']=='Dark') ? 'dark-mode' : ''?>">
+<body class="hold-transition layout-top-nav <?=(isset($settings->merchant_theme) && $settings->merchant_theme=='Dark') ? 'dark-mode' : ''?>">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand-md <?=(isset($config['theme']) && $config['theme']=='Dark') ? 'navbar-dark' : 'navbar-light'?>">
+  <nav class="main-header navbar navbar-expand-md <?=(isset($settings->merchant_theme) && $settings->merchant_theme=='Dark') ? 'navbar-dark' : 'navbar-light'?>">
     <div class="container">
       <a href="/" class="navbar-brand">
         <img src="<?=(!empty($settings) && $settings->merchant_logo_path) ? base_url().'/a/'.$settings->merchant_url_slug.'/logo/thumb' : base_url().'/dist/img/default-150x150.png' ?>" alt="Logo" class="brand-image" style="opacity: .8">
-        <span class="brand-text font-weight-light"><?=$config['name']?></span>
+        <span class="brand-text font-weight-light"><?=$settings->merchant_name?></span>
       </a>
 
       <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,7 +85,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <footer class="main-footer">
       <!-- To the right -->
       <div class="float-right d-none d-sm-inline">
-        <b><?=$config['name']?></b>
+        <b><?=$settings->merchant_name?></b>
       </div>
       <!-- Default to the left -->
       <strong>Copyright &copy; <?=date("Y")?> <a href="https://upleads.online">upleads.online</a>.</strong>

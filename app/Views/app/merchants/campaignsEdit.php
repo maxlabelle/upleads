@@ -36,13 +36,8 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Coupon commission (%) <?=(!empty($campaign) && $campaign->item_price && $campaign->coupon_commission_pc) ? "- [ ".round($campaign->item_price * ($campaign->coupon_commission_pc / 100 ), 2)."$ ]" : ''?></label>
-                  <input type="text" class="form-control" name="coupon_commission_pc" value="<?=(!empty($campaign)) ? $campaign->coupon_commission_pc : ''?>">
-                </div>
-
-                <div class="form-group">
-                  <label>Coupon rebate (%) <?=(!empty($campaign) && $campaign->item_price && $campaign->coupon_rebate_pc) ? "- [ ".round($campaign->item_price * ($campaign->coupon_rebate_pc / 100 ), 2)."$ ]" : ''?></label>
-                  <input type="text" class="form-control" name="coupon_rebate_pc" value="<?=(!empty($campaign)) ? $campaign->coupon_rebate_pc : ''?>">
+                  <label>Item commission (%) <?=(!empty($campaign) && $campaign->item_price && $campaign->item_commission_pc) ? "- [ ".round($campaign->item_price * ($campaign->item_commission_pc / 100 ), 2)."$ ]" : ''?></label>
+                  <input type="text" class="form-control" name="item_commission_pc" value="<?=(!empty($campaign)) ? $campaign->item_commission_pc : ''?>">
                 </div>
 
                 <div class="form-group">

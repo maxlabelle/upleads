@@ -43,7 +43,7 @@
 
                                     <div class="form-group">
                                       <label>Merchant name</label>
-                                      <input type="text" class="form-control" required name="name" value="<?=(!empty($config)) ? $config['name'] : ''?>">
+                                      <input type="text" class="form-control" required name="merchant_name" value="<?=(!empty($settings)) ? $settings->merchant_name : ''?>">
                                     </div>
 
                                     <div class="form-group">
@@ -58,9 +58,9 @@
 
                                     <div class="form-group">
                                       <label>Auto-approve new affiliates</label>
-                                      <select class="form-control" name="autoapprove">
-                                        <option value="Yes" <?=(!empty($config) && $config['autoapprove']==='Yes') ? 'selected' : ''?>>Yes</option>
-                                        <option value="No" <?=(!empty($config) && $config['autoapprove']==='No') ? 'selected' : ''?>>No</option>
+                                      <select class="form-control" name="merchant_autoapprove">
+                                        <option value="Yes" <?=(!empty($settings) && $settings->merchant_autoapprove==='Yes') ? 'selected' : ''?>>Yes</option>
+                                        <option value="No" <?=(!empty($settings) && $settings->merchant_autoapprove==='No') ? 'selected' : ''?>>No</option>
                                       </select>
                                     </div>
 
@@ -69,9 +69,9 @@
                   <div class="tab-pane fade" id="vert-tabs-display" role="tabpanel" aria-labelledby="vert-tabs-terms-tab">
                     <div class="form-group">
                       <label>Theme</label>
-                      <select class="form-control" name="theme">
-                        <option value="Dark" <?=(!empty($config) && $config['theme']==='Dark') ? 'selected' : ''?>>Dark</option>
-                        <option value="Light" <?=(!empty($config) && $config['theme']==='Light') ? 'selected' : ''?>>Light</option>
+                      <select class="form-control" name="merchant_theme">
+                        <option value="Dark" <?=(!empty($settings) && $settings->merchant_theme==='Dark') ? 'selected' : ''?>>Dark</option>
+                        <option value="Light" <?=(!empty($settings) && $settings->merchant_theme==='Light') ? 'selected' : ''?>>Light</option>
                       </select>
                     </div>
 

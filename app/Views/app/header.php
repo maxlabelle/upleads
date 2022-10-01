@@ -22,18 +22,18 @@
   <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="/dist/css/adminlte.css">
 
-  <link rel="icon" type="image/x-icon" href="/dist/img/upleads.png">
+  <link rel="icon" type="image/x-icon" href="/dist/img/logo.png">
 </head>
-<body class="hold-transition <?=(myConfig()['theme']=='Dark') ? 'dark-mode' : ''?> sidebar-mini layout-fixed layout-navbar-fixed">
+<body class="hold-transition <?=(myTheme()=='Dark') ? 'dark-mode' : ''?> sidebar-mini layout-fixed layout-navbar-fixed">
 <div class="wrapper">
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="/dist/img/upleads<?=(myConfig()['theme']=='Dark') ? '-white' : ''?>.png" alt="Upleads" height="60" width="60">
+    <img class="animation__wobble" src="/dist/img/logo<?=(myTheme()=='Dark') ? '-white' : ''?>.png" alt="Upleads" height="60" width="60">
   </div>
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand <?=(myConfig()['theme']=='Dark') ? 'navbar-dark' : 'navbar-white navbar-light'?>">
+  <nav class="main-header navbar navbar-expand <?=(myTheme()=='Dark') ? 'navbar-dark' : 'navbar-white navbar-light'?>">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -59,10 +59,10 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar <?=(myConfig()['theme']=='Dark') ? 'sidebar-dark-primary' : ''?> elevation-4">
+  <aside class="main-sidebar <?=(myTheme()=='Dark') ? 'sidebar-dark-primary' : ''?> elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-      <img src="/dist/img/upleads<?=(myConfig()['theme']=='Dark') ? '-white' : ''?>.png" alt="Upleads Logo" class="brand-image" style="opacity: .8">
+      <img src="/dist/img/logo<?=(myTheme()=='Dark') ? '-white' : ''?>.png" alt="Upleads Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-light">Upleads</span>
     </a>
 

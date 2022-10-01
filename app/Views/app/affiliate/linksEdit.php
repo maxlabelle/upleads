@@ -13,7 +13,7 @@
               <div class="card-header">
                 <div class="row">
                   <div class="col-md-12">
-                    <h5>Programs</h5>
+                    <h5>Links</h5>
                   </div>
                 </div>
               </div>
@@ -25,13 +25,14 @@
                   <tr>
                     <th>Merchant name</th>
                     <th>Program</th>
+                    <th>Link</th>
                     <th class="text-right tiny-width" data-orderable="false">
-
+                      <a href="/affiliate/links/new" class="btn btn-sm btn-success"><i class="fa-solid fa-circle-plus"></i></a>
                     </th>
                   </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($campaigns->getResult() as $row) { ?>
+                    <?php foreach($links->getResult() as $row) { ?>
 
                       <tr>
                         <td><?=$row->merchant_name?></td>

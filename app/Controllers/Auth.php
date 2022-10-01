@@ -17,8 +17,7 @@ class Auth extends BaseController
 
     public function login($merchantUrlSlug = false) {
       $auth = false;
-      $settings = false;
-      $config = getDefaultConfig();
+      $settings = getDefaultConfig();
       $error = false;
 
       if (!$merchantUrlSlug && $this->merchant_url_slug) {
@@ -30,7 +29,6 @@ class Auth extends BaseController
         if (!$settings) {
           return redirect()->to('/');
         }
-        $config = $this->settingsModel->getConfig($settings->user_id);
       }
 
       $userId = $this->session->get('userId');
@@ -68,14 +66,12 @@ class Auth extends BaseController
         'error'=>$error,
         'merchant'=>$merchantUrlSlug,
         'settings'=>$settings,
-        'config'=>$config,
       ], false, "website");
     }
 
     public function register($merchantUrlSlug = false) {
       $error = false;
-      $settings = false;
-      $config = getDefaultConfig();
+      $settings = getDefaultConfig();
 
       if (!$merchantUrlSlug && $this->merchant_url_slug) {
           $merchantUrlSlug = $this->merchant_url_slug;
@@ -86,7 +82,6 @@ class Auth extends BaseController
         if (!$settings) {
           return redirect()->to('/');
         }
-        $config = $this->settingsModel->getConfig($settings->user_id);
       }
 
       $action = $this->request->getVar('action');
@@ -138,14 +133,12 @@ class Auth extends BaseController
         'error'=>$error,
         'merchant'=>$merchantUrlSlug,
         'settings'=>$settings,
-        'config'=>$config,
       ], false, "website");
     }
-    
+
     public function terms($merchantUrlSlug = false) {
       $error = false;
       $settings = false;
-      $config = getDefaultConfig();
 
       if (!$merchantUrlSlug && $this->merchant_url_slug) {
           $merchantUrlSlug = $this->merchant_url_slug;
@@ -156,13 +149,11 @@ class Auth extends BaseController
         if (!$settings) {
           return redirect()->to('/');
         }
-        $config = $this->settingsModel->getConfig($settings->user_id);
       }
 
       return $this->template->view('terms', [
         'merchant'=>$merchantUrlSlug,
         'settings'=>$settings,
-        'config'=>$config,
       ], false, "website");
     }
 }

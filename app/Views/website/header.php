@@ -16,17 +16,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="/dist/css/adminlte.css">
 
-  <link rel="icon" type="image/x-icon" href="/dist/img/upleads.png">
+  <link rel="icon" type="image/x-icon" href="<?=(!empty($settings) && $settings->merchant_logo_path) ? base_url().'/a/'.$settings->merchant_url_slug.'/logo/thumb' : base_url().'/dist/img/logo.png' ?>">
 
 </head>
-<body class="hold-transition  dark-mode layout-top-nav">
+<body class="hold-transition <?=(isset($settings->merchant_theme) && $settings->merchant_theme=='Dark') ? 'dark-mode' : ''?> layout-top-nav">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand-md navbar-dark">
+  <nav class="main-header navbar navbar-expand-md <?=(isset($settings->merchant_theme) && $settings->merchant_theme=='Dark') ? 'navbar-dark' : 'navbar-light'?>">
     <div class="container">
       <a href="/" class="navbar-brand">
-        <img src="/dist/img/upleads.png" alt="Upleads Logo" class="brand-image" style="opacity: .8">
+        <img src="<?=(!empty($settings) && $settings->merchant_logo_path) ? base_url().'/a/'.$settings->merchant_url_slug.'/logo/thumb' : base_url().'/dist/img/logo.png' ?>" alt="Logo" class="brand-image" style="opacity: .8">
         <span class="brand-text font-weight-light">Upleads</span>
       </a>
 

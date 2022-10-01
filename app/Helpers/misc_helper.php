@@ -29,9 +29,9 @@ function roles() {
   return $session->get('roles');
 }
 
-function myConfig() {
+function myTheme() {
   $session = session();
-  return $session->get('config');
+  return $session->get('theme');
 }
 
 function isActive($segment) {
@@ -92,5 +92,11 @@ function getImage($path) {
 }
 
 function getDefaultConfig() {
-  return ['theme'=>getenv('app.defaultTheme')];
+  return (object)[
+    'merchant_theme'=>getenv('app.defaultTheme'),
+    'merchant_name'=>getenv('app.defaultCompany'),
+    'merchant_logo_path'=>false,
+    'merchant_bg_path'=>false,
+    'merchant_url_slug'=>false,
+  ];
 }

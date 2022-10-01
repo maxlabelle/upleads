@@ -14,16 +14,15 @@ class Merchants extends SecureBaseController
           $status = $this->request->getVar("status");
           $affiliateApproval = $this->request->getVar("affiliateApproval");
           $item_price = $this->request->getVar("item_price");
-          $coupon_commission_pc = $this->request->getVar("coupon_commission_pc");
-          $coupon_rebate_pc = $this->request->getVar("coupon_rebate_pc");
+          $item_commission_pc = $this->request->getVar("item_commission_pc");
+
           if ($operation === "edit") {
             $this->campaignsModel->edit($campaignId, [
               'user_id' => $userId,
               'name' => $name,
               'status' => $status,
               'item_price' => $item_price,
-              'coupon_commission_pc' => $coupon_commission_pc,
-              'coupon_rebate_pc' => $coupon_rebate_pc,
+              'item_commission_pc' => $item_commission_pc,
               'affiliateApproval' => $affiliateApproval,
             ]);
           } else {
@@ -33,8 +32,7 @@ class Merchants extends SecureBaseController
               'name' => $name,
               'status' => $status,
               'item_price' => $item_price,
-              'coupon_commission_pc' => $coupon_commission_pc,
-              'coupon_rebate_pc' => $coupon_rebate_pc,
+              'item_commission_pc' => $item_commission_pc,
               'affiliateApproval' => $affiliateApproval,
             ]);
           }
@@ -154,13 +152,14 @@ class Merchants extends SecureBaseController
 
         }
 
-        $name = $this->request->getVar("name");
         $merchant_domain = $this->request->getVar("merchant_domain");
         $merchant_terms = $this->request->getVar("merchant_terms");
         $merchant_home = $this->request->getVar("merchant_home");
-        $autoapprove = $this->request->getVar("autoapprove");
-        $theme = $this->request->getVar("theme");
-        $url_slug = slugify($name);
+        $merchant_theme = $this->request->getVar("merchant_theme");
+        $merchant_autoapprove = $this->request->getVar("merchant_autoapprove");
+        $merchant_name = $this->request->getVar("merchant_name");
+
+        $url_slug = slugify($merchant_name);
 
         if ($this->settingsModel->slugExists($userId, $url_slug)) {
           $url_slug = '';
@@ -178,22 +177,19 @@ class Merchants extends SecureBaseController
           'merchant_home' => $merchant_home,
           'merchant_url_slug' => $url_slug,
           'merchant_domain' => $merchant_domain,
+          'merchant_autoapprove' => $merchant_autoapprove,
+          'merchant_name' => $merchant_name,
+          'merchant_theme' => $merchant_theme,
         ]);
-
-        $this->settingsModel->setValue($userId, "autoapprove", $autoapprove);
-        $this->settingsModel->setValue($userId, "name", $name);
-        $this->settingsModel->setValue($userId, "theme", $theme);
 
         if (!$errors) {
           return redirect()->to('/merchants/settings');
         }
       }
 
-      $config = $this->settingsModel->getConfig($userId);
       $settings = $this->settingsModel->getWhereSingle(['user_id'=>$userId]);
 
       return $this->template->view('merchants/settings', [
-        'config' => $config,
         'settings' => $settings,
         'errors' => $errors,
       ]);

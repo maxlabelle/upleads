@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?php if ($merchant) { ?>
-            <?=$config['name']?>
+            <?=$settings->merchant_name?>
           <?php } else { ?>
             Upleads Affiliate Tracking Software
           <?php } ?></title>
@@ -32,7 +32,7 @@
 
   </style>
 </head>
-<body class="hold-transition register-page <?=(isset($config['theme']) && $config['theme']=='Dark') ? 'dark-mode' : ''?>">
+<body class="hold-transition register-page <?=(isset($settings->merchant_theme) && $settings->merchant_theme=='Dark') ? 'dark-mode' : ''?>">
 <div class="register-box">
   <div class="card card-outline card-primary mb-3 mt-3">
     <div class="card-header text-center">
@@ -40,7 +40,7 @@
         <?php if ($merchant) { ?>
           <img src="<?=(!empty($settings) && $settings->merchant_logo_path) ? base_url().'/a/'.$settings->merchant_url_slug.'/logo/thumb' : base_url().'/dist/img/default-150x150.png' ?>" class="img-login-logo">
 
-          <p class="mt-1"><?=$config['name']?></p>
+          <p class="mt-1"><?=$settings->merchant_name?></p>
         <?php } else { ?>
           <b>Up</b>leads
         <?php } ?>

@@ -22,9 +22,7 @@ class UsersModel extends BasicModel
 
       $this->edit($userId,['roles'=>json_encode($roles)]);
     }
-    public function programs($userId) {
-      return $this->db->table("users_programs")->getWhere(["user_id"=>$userId]);
-    }
+
     public function join($userId, $campaignId) {
       $query = $this->db->table("campaigns")->getWhere(["id"=>$campaignId]);
       $campaign = $query->getRow();
@@ -33,6 +31,13 @@ class UsersModel extends BasicModel
         'user_id' => $userId,
         'campaign_id' => $campaignId,
         'status' => ($campaign->affiliateApproval=='Automatic') ? 'Approved' : 'Pending',
+      ]);
+    }
+
+    public function leave($userId, $campaignId) {
+      $this->db->table("users_programs")->delete([
+        'user_id' => $userId,
+        'campaign_id' => $campaignId,
       ]);
     }
 
