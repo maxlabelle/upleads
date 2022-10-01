@@ -67,7 +67,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <div class="card mt-4">
               <div class="card-body">
-                <?=(!empty($settings) && $settings->merchant_terms) ? $settings->merchant_terms : ':)'?>
+                <?=(!empty($settings) && $settings->merchant_home) ? $settings->merchant_home : ':)'?>
               </div>
             </div>
 
