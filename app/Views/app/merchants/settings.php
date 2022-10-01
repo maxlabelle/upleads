@@ -46,6 +46,14 @@
                 </div>
 
                 <div class="form-group">
+                  <label>Auto-approve new affiliates</label>
+                  <select class="form-control" name="autoapprove">
+                    <option value="Yes" <?=(!empty($config) && $config['autoapprove']==='Yes') ? 'selected' : ''?>>Yes</option>
+                    <option value="No" <?=(!empty($config) && $config['autoapprove']==='No') ? 'selected' : ''?>>No</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
                   <label>Theme</label>
                   <select class="form-control" name="theme">
                     <option value="Dark" <?=(!empty($config) && $config['theme']==='Dark') ? 'selected' : ''?>>Dark</option>

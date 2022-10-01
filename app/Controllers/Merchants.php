@@ -59,42 +59,36 @@ class Merchants extends SecureBaseController
         if ($action == "save") {
           $name = $this->request->getVar("name");
           $status = $this->request->getVar("status");
-          $affiliateApproval = $this->request->getVar("affiliateApproval");
+          $approved = $this->request->getVar("approved");
+
           if ($operation === "edit") {
-            $this->campaignsModel->edit($campaignId, [
-              'user_id' => $userId,
+            $this->usersModel->edit(['merchant_id'=>$userId, 'id'=>$affiliateId], [
               'name' => $name,
               'status' => $status,
-              'affiliateApproval' => $affiliateApproval,
-            ]);
-          } else {
-            $this->campaignsModel->create([
-              'id' => uid(),
-              'user_id' => $userId,
-              'name' => $name,
-              'status' => $status,
-              'affiliateApproval' => $affiliateApproval,
+              'approved' => $approved,
             ]);
           }
-          return redirect()->to('/merchants/campaigns');
+          return redirect()->to('/merchants/affiliates');
         }
 
         if ($operation === "delete") {
-          $this->campaignsModel->remove(['user_id'=>$userId, 'id'=>$campaignId]);
-          return redirect()->to('/merchants/campaigns');
+          $this->usersModel->edit(['merchant_id'=>$userId, 'id'=>$affiliateId], [
+            'deleted' => 'Yes',
+          ]);
+          return redirect()->to('/merchants/affiliates');
         }
 
-        $campaign = false;
+        $affiliate = false;
         if ($operation === "edit") {
-          $campaign = $this->campaignsModel->getWhereSingle(['user_id'=>$userId, 'id'=>$campaignId]);
+          $affiliate = $this->usersModel->getWhereSingle(['merchant_id'=>$userId, 'id'=>$affiliateId]);
         }
-        return $this->template->view('merchants/campaignsEdit', [
-          'campaign' => $campaign
+        return $this->template->view('merchants/affiliatesEdit', [
+          'affiliate' => $affiliate
         ]);
       } else {
-        $campaigns = $this->campaignsModel->getWhere(['user_id'=>$userId]);
-        return $this->template->view('merchants/campaigns', [
-          'campaigns' => $campaigns
+        $affiliates = $this->usersModel->getWhere(['merchant_id'=>$userId, 'deleted'=>'No']);
+        return $this->template->view('merchants/affiliates', [
+          'affiliates' => $affiliates
         ]);
       }
     }
@@ -154,6 +148,7 @@ class Merchants extends SecureBaseController
 
         $name = $this->request->getVar("name");
         $merchant_domain = $this->request->getVar("merchant_domain");
+        $autoapprove = $this->request->getVar("autoapprove");
         $theme = $this->request->getVar("theme");
         $url_slug = slugify($name);
 
@@ -173,6 +168,7 @@ class Merchants extends SecureBaseController
           'merchant_domain' => $merchant_domain,
         ]);
 
+        $this->settingsModel->setValue($userId, "autoapprove", $autoapprove);
         $this->settingsModel->setValue($userId, "name", $name);
         $this->settingsModel->setValue($userId, "theme", $theme);
 

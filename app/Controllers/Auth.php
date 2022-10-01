@@ -121,6 +121,7 @@ class Auth extends BaseController
             'merchant_id' => $merchantId,
             'passwordhash' => password_hash($password, PASSWORD_BCRYPT),
             'status' => 'Active',
+            'approved' => (isset($config['autoapprove']) && $config['autoapprove']==='Yes') ? 'Yes' : 'No',
             'roles' => $roles,
           ]);
 

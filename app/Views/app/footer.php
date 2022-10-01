@@ -50,7 +50,7 @@
 <script src="/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <script>
   $(function () {
-    $('#aDeleteBtn').click(function(e) {
+    $('.aDeleteBtn').click(function(e) {
       e.preventDefault();
       let thisHref = this.href;
       bootbox.confirm("Are you sure?", function(result) {
@@ -59,21 +59,23 @@
         }
       });
     });
+
     $('#datatable').DataTable({
       "paging": true,
       "lengthChange": false,
-      "searching": false,
+      "searching": true,
       "ordering": true,
       "info": true,
       "autoWidth": false,
       "responsive": true,
     });
-  });
-  $('.select2').select2();
-  $("input[data-bootstrap-switch]").each(function(){
-  $(this).bootstrapSwitch('state', $(this).prop('checked'));
 
-});
+    $('.select2').select2();
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    });
+
+  });
 </script>
 </body>
 </html>
