@@ -48,8 +48,12 @@
 <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <script src="/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script src="/plugins/summernote/summernote-bs4.min.js"></script>
 <script>
   $(function () {
+
+    $('.summernote').summernote();
+
     $('.aDeleteBtn').click(function(e) {
       e.preventDefault();
       let thisHref = this.href;

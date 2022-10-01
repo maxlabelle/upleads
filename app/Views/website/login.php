@@ -35,9 +35,9 @@
 <body class="hold-transition login-page <?=(isset($config['theme']) && $config['theme']=='Dark') ? 'dark-mode' : ''?>">
 <div class="login-box">
   <!-- /.login-logo -->
-  <div class="card card-outline card-primary">
+  <div class="card card-outline card-primary mb-3 mt-3">
     <div class="card-header text-center">
-      <a href="/" class="h3">
+      <a href="<?php if ($merchant) { echo str_replace("login", "home", current_url()); } else { echo '/'; } ?>" class="h3">
         <?php if ($merchant) { ?>
           <img src="<?=(!empty($settings) && $settings->merchant_logo_path) ? base_url().'/a/'.$settings->merchant_url_slug.'/logo/thumb' : base_url().'/dist/img/default-150x150.png' ?>" class="img-login-logo">
 

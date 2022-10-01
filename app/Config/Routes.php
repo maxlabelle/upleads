@@ -42,8 +42,9 @@ $routes->get('/auth/logout', 'Auth::logout');
 
 $routes->add('a/(:segment)/login', 'Auth::login/$1');
 $routes->add('a/(:segment)/register', 'Auth::register/$1');
-
+$routes->get('a/(:segment)/terms', 'Auth::terms/$1');
 $routes->get('a/(:segment)/home', 'Routing::merchantHome/$1');
+
 $routes->get('a/(:segment)/logo', 'Routing::merchantImage/logo/$1');
 $routes->get('a/(:segment)/bg/', 'Routing::merchantImage/bg/$1');
 $routes->get('a/(:segment)/logo/(:segment)', 'Routing::merchantImage/logo/$1/$2');

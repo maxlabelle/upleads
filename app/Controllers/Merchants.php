@@ -148,6 +148,8 @@ class Merchants extends SecureBaseController
 
         $name = $this->request->getVar("name");
         $merchant_domain = $this->request->getVar("merchant_domain");
+        $merchant_terms = $this->request->getVar("merchant_terms");
+        $merchant_home = $this->request->getVar("merchant_home");
         $autoapprove = $this->request->getVar("autoapprove");
         $theme = $this->request->getVar("theme");
         $url_slug = slugify($name);
@@ -164,6 +166,8 @@ class Merchants extends SecureBaseController
         }
 
         $this->settingsModel->edit(['user_id' => $userId], [
+          'merchant_terms' => $merchant_terms,
+          'merchant_home' => $merchant_home,
           'merchant_url_slug' => $url_slug,
           'merchant_domain' => $merchant_domain,
         ]);

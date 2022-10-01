@@ -23,7 +23,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand-md navbar-light navbar-dark">
+  <nav class="main-header navbar navbar-expand-md navbar-dark">
     <div class="container">
       <a href="/" class="navbar-brand">
         <img src="/dist/img/upleads.png" alt="Upleads Logo" class="brand-image" style="opacity: .8">

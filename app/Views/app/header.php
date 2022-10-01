@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
-
+  <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="/dist/css/adminlte.css">
 
   <link rel="icon" type="image/x-icon" href="/dist/img/upleads.png">

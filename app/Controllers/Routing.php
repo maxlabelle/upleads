@@ -8,6 +8,29 @@ class Routing extends BaseController
         return redirect()->to('/');
     }
 
+    public function merchantHome($merchantUrlSlug = false) {
+      $settings = false;
+      $config = getDefaultConfig();
+
+      if (!$merchantUrlSlug && $this->merchant_url_slug) {
+          $merchantUrlSlug = $this->merchant_url_slug;
+      }
+
+      if ($merchantUrlSlug) {
+        $settings = $this->settingsModel->getWhereSingle(['merchant_url_slug'=>$merchantUrlSlug]);
+        if (!$settings) {
+          return redirect()->to('/');
+        }
+        $config = $this->settingsModel->getConfig($settings->user_id);
+      }
+
+      return $this->template->view('merchantHome', [
+        'merchant'=>$merchantUrlSlug,
+        'settings'=>$settings,
+        'config'=>$config,
+      ], false, "website");
+    }
+
     public function merchantImage($type, $merchantUrlSlug, $thumbnail = false) {
       $settings = $this->settingsModel->getWhereSingle(['merchant_url_slug'=>$merchantUrlSlug]);
       $path = '';
