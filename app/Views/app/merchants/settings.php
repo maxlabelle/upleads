@@ -112,7 +112,7 @@
                   </div>
                   <div class="tab-pane fade" id="vert-tabs-home" role="tabpanel" aria-labelledby="vert-tabs-home-tab">
                     <div class="form-group">
-                      <label>Home page</label>
+                      <label>Home page <?=(!empty($settings) && $settings->merchant_url_slug) ? '( <a href="/a/'.$settings->merchant_url_slug.'/home" target="_blank">Preview</a>) ' : ''?></label>
                       <textarea id="summernote" class="summernote" name="merchant_home"><?=(!empty($settings)) ? $settings->merchant_home : ''?></textarea>
                     </div>
                   </div>
