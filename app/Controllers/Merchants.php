@@ -13,11 +13,17 @@ class Merchants extends SecureBaseController
           $name = $this->request->getVar("name");
           $status = $this->request->getVar("status");
           $affiliateApproval = $this->request->getVar("affiliateApproval");
+          $item_price = $this->request->getVar("item_price");
+          $coupon_commission_pc = $this->request->getVar("coupon_commission_pc");
+          $coupon_rebate_pc = $this->request->getVar("coupon_rebate_pc");
           if ($operation === "edit") {
             $this->campaignsModel->edit($campaignId, [
               'user_id' => $userId,
               'name' => $name,
               'status' => $status,
+              'item_price' => $item_price,
+              'coupon_commission_pc' => $coupon_commission_pc,
+              'coupon_rebate_pc' => $coupon_rebate_pc,
               'affiliateApproval' => $affiliateApproval,
             ]);
           } else {
@@ -26,10 +32,12 @@ class Merchants extends SecureBaseController
               'user_id' => $userId,
               'name' => $name,
               'status' => $status,
+              'item_price' => $item_price,
+              'coupon_commission_pc' => $coupon_commission_pc,
+              'coupon_rebate_pc' => $coupon_rebate_pc,
               'affiliateApproval' => $affiliateApproval,
             ]);
           }
-          return redirect()->to('/merchants/campaigns');
         }
 
         if ($operation === "delete") {

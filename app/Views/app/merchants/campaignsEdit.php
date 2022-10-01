@@ -31,6 +31,21 @@
                 </div>
 
                 <div class="form-group">
+                  <label>Item price ($)</label>
+                  <input type="text" class="form-control" name="item_price" value="<?=(!empty($campaign)) ? $campaign->item_price : ''?>">
+                </div>
+
+                <div class="form-group">
+                  <label>Coupon commission (%) <?=(!empty($campaign) && $campaign->item_price && $campaign->coupon_commission_pc) ? "- [ ".round($campaign->item_price * ($campaign->coupon_commission_pc / 100 ), 2)."$ ]" : ''?></label>
+                  <input type="text" class="form-control" name="coupon_commission_pc" value="<?=(!empty($campaign)) ? $campaign->coupon_commission_pc : ''?>">
+                </div>
+
+                <div class="form-group">
+                  <label>Coupon rebate (%) <?=(!empty($campaign) && $campaign->item_price && $campaign->coupon_rebate_pc) ? "- [ ".round($campaign->item_price * ($campaign->coupon_rebate_pc / 100 ), 2)."$ ]" : ''?></label>
+                  <input type="text" class="form-control" name="coupon_rebate_pc" value="<?=(!empty($campaign)) ? $campaign->coupon_rebate_pc : ''?>">
+                </div>
+
+                <div class="form-group">
                   <label>Status</label>
                   <select class="form-control" name="status">
                     <option value="Active" <?=(!empty($campaign) && $campaign->status==='Active') ? 'selected' : ''?>>Active</option>
