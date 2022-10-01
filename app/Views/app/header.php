@@ -115,15 +115,15 @@
           <?php if (hasRole(roles(), "Affiliate")) { ?>
           <li class="nav-header">Affiliate</li>
           <li class="nav-item">
-            <a href="/affiliates/programs" class="nav-link">
+            <a href="/affiliate/programs" class="nav-link">
               <i class="nav-icon fa-solid fa-coins"></i>
               <p>
-                Coupons
+                Programs
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/affiliates/links" class="nav-link">
+            <a href="/affiliate/links" class="nav-link">
               <i class="nav-icon fa-solid fa-link"></i>
               <p>
                 Links
