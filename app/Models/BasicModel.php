@@ -6,10 +6,14 @@ use CodeIgniter\Model;
 
 class BasicModel extends Model
 {
-    public function exists($exclude_column, $exclude_value, $column, $needle, $where = []) {
-      $settings = $this->getWhere($where);
+    public function exists($exclude_column, $exclude_value, $column, $needle, $where = [], $table = false) {
+      if (!$table) {
+        $table = $this->table;
+      }
+
+      $rows = $this->db->table($table)->getWhere($where);
       $found = false;
-      foreach($settings->getResult() as $row) {
+      foreach($rows->getResult() as $row) {
         if ($row->{$exclude_column} != $exclude_value) {
           if ($row->{$column} === $needle) {
             $found = true;

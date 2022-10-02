@@ -18,6 +18,14 @@ class CampaignsModel extends BasicModel
       return $query;
     }
 
+    public function trackingTagIdExists($id) {
+      return $this->exists('tracking_tag_id', $id, 'tracking_tag_id', $id);
+    }
+
+    public function affiliateLinkIdExists($id) {
+      return $this->exists('affiliate_link_id', $id, 'affiliate_link_id', $id, [], 'users_programs_links');
+    }
+
     public function getJoinedPrograms($userId) {
       $builder = $this->db->table($this->table);
       $builder->select("campaigns.id, campaigns.name, campaigns.status, settings.merchant_name, users_programs.status AS userStatus");

@@ -41,16 +41,19 @@ class Affiliate extends SecureBaseController
 
         if ($action=="save") {
           if ($operation === "new") {
+            $affiliateLinkId = suid();
+            while ($this->campaignsModel->affiliateLinkIdExists($affiliateLinkId)) {
+              $affiliateLinkId = suid();
+            }
             $linkId = uid();
             $campaignId = $this->request->getVar("campaign_id");
-            $affiliateLinkId = suid();
             $this->campaignsModel->createLink([
               'id' => $linkId,
               'user_id' => $userId,
               'affiliate_link_id' => $affiliateLinkId,
               'campaign_id' => $campaignId,
             ]);
-            return redirect()->to('/affiliate/links');     
+            return redirect()->to('/affiliate/links');
           }
         }
 

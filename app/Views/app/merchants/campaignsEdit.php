@@ -31,6 +31,11 @@
                 </div>
 
                 <div class="form-group">
+                  <label>Tracking tag</label>
+                  <input readonly disabled="disabled" type="text" class="form-control" value="<script src='https://upleads.online/v/<?=(!empty($campaign)) ? $campaign->tracking_tag_id : ''?>'></script>">
+                </div>
+
+                <div class="form-group">
                   <label>Item URL</label>
                   <input type="text" class="form-control" name="item_url" value="<?=(!empty($campaign)) ? $campaign->item_url : ''?>">
                 </div>

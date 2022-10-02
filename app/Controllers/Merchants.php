@@ -28,8 +28,13 @@ class Merchants extends SecureBaseController
               'affiliateApproval' => $affiliateApproval,
             ]);
           } else {
+            $trackingTagId = suid();
+            while ($this->campaignsModel->trackingTagIdExists($trackingTagId)) {
+              $trackingTagId = suid();
+            }
             $this->campaignsModel->create([
               'id' => uid(),
+              'tracking_tag_id' => $trackingTagId,
               'user_id' => $userId,
               'name' => $name,
               'status' => $status,
