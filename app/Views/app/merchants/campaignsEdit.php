@@ -32,7 +32,12 @@
 
                 <div class="form-group">
                   <label>Tracking tag</label>
-                  <input readonly disabled="disabled" type="text" class="form-control" value="<script src='https://upleads.online/v/<?=(!empty($campaign)) ? $campaign->tracking_tag_id : ''?>'></script>">
+                  <div class="input-group mb-3">
+                    <input type="text" disabled="disabled" readonly value='<script src="<?=base_url()?>/v/<?=(!empty($campaign)) ? $campaign->tracking_tag_id : ''?>"></script>' class="form-control" id="content" placeholder="URL" aria-label="URL" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary copy-text" type="button" id="button-addon2">Copy</button>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="form-group">
