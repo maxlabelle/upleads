@@ -100,3 +100,7 @@ function getDefaultConfig() {
     'merchant_url_slug'=>false,
   ];
 }
+
+function makeAffiliateUrl($affiliateLinkId) {
+  return base_url()."/r/{$affiliateLinkId}";
+}

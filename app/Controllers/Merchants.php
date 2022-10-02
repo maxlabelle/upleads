@@ -15,6 +15,7 @@ class Merchants extends SecureBaseController
           $affiliateApproval = $this->request->getVar("affiliateApproval");
           $item_price = $this->request->getVar("item_price");
           $item_commission_pc = $this->request->getVar("item_commission_pc");
+          $item_url = $this->request->getVar("item_url");
 
           if ($operation === "edit") {
             $this->campaignsModel->edit($campaignId, [
@@ -23,6 +24,7 @@ class Merchants extends SecureBaseController
               'status' => $status,
               'item_price' => $item_price,
               'item_commission_pc' => $item_commission_pc,
+              'item_url' => $item_url,
               'affiliateApproval' => $affiliateApproval,
             ]);
           } else {
@@ -33,6 +35,7 @@ class Merchants extends SecureBaseController
               'status' => $status,
               'item_price' => $item_price,
               'item_commission_pc' => $item_commission_pc,
+              'item_url' => $item_url,
               'affiliateApproval' => $affiliateApproval,
             ]);
           }

@@ -75,8 +75,37 @@
     });
 
     $('.select2').select2();
+
     $("input[data-bootstrap-switch]").each(function(){
       $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    });
+
+    // get the text from the DOM Element:
+
+    // when someone clicks on the <a class="copy-text"> element
+    // (which should be a <button>), execute the copy command:
+    document.querySelector('.copy-text').addEventListener('click' , ()=> {
+      let textToCopy = $('#content').val();
+      console.log(textToCopy);
+      if (window.isSecureContext && navigator.clipboard) {
+        navigator.clipboard.writeText(textToCopy).then(
+          function() {
+            /* clipboard successfully set */
+            // $('.copy-text').tooltip('toggle');
+          },
+          function() {
+            /* clipboard write failed */
+            window.alert('Opps! Your browser does not support the Clipboard API');
+          }
+        )
+      } else {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val(textToCopy).select();
+        document.execCommand("copy");
+        $temp.remove();
+        // $('.copy-text').tooltip('toggle');
+      }
     });
 
   });

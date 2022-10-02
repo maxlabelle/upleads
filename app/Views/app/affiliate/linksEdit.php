@@ -12,51 +12,44 @@
             <div class="card">
               <div class="card-header">
                 <div class="row">
-                  <div class="col-md-12">
-                    <h5>Links</h5>
+                  <div class="col-md-8">
+                    <h5><?php echo ($link) ? 'Edit' : 'New'; ?> link</h5>
+                  </div>
+                  <div class="col-md-4 text-right">
+
                   </div>
                 </div>
               </div>
               <!-- /.card-header -->
+              <form method="post">
               <div class="card-body">
+                <input type="hidden" name="action" value="save">
 
-                    <table id="datatable" class="table table-bordered table-hover">
-                  <thead>
-                  <tr>
-                    <th>Merchant name</th>
-                    <th>Program</th>
-                    <th>Link</th>
-                    <th class="text-right tiny-width" data-orderable="false">
-                      <a href="/affiliate/links/new" class="btn btn-sm btn-success"><i class="fa-solid fa-circle-plus"></i></a>
-                    </th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach($links->getResult() as $row) { ?>
-
-                      <tr>
-                        <td><?=$row->merchant_name?></td>
-                        <td><?=$row->name?></td>
-                        <td class="text-right tiny-width">
-                          <?php if ($row->userStatus == 'Approved') { ?>
-                            <a href="/affiliate/programs/leave/<?=$row->id?>" class="btn btn-sm btn-danger aDeleteBtn"><i class="fa-solid fa-circle-xmark"></i> Leave</a>
-                          <a href="#" class="btn btn-sm btn-success"><i class="fa-solid fa-square-check"></i> Joined</a>
-                        <?php } elseif ($row->userStatus == 'Pending') { ?>
-                            <a href="#" class="btn btn-sm btn-primary"><i class="fa-solid fa-hourglass-start"></i> Pending approval</a>
-                          <?php } else { ?>
-                            <a href="/affiliate/programs/join/<?=$row->id?>" class="btn btn-sm btn-info"><i class="fa-solid fa-arrow-right"></i> Ask to join</a>
-                          <?php } ?>
-                        </td>
-                      </tr>
+                <div class="form-group">
+                  <label>Program</label>
+                  <select class="form-control select2" name="campaign_id">
+                    <?php foreach($campaigns->getResult() as $row) { ?>
+                      <option value="<?=$row->id?>"><?=$row->merchant_name?> - <?=$row->name?> </option>
                     <?php } ?>
-                  </tbody>
 
-                </table>
+                  </select>
+                </div>
+
+                <?php if ($link) { ?>
+                <div class="form-group">
+                  <label>URL</label>
+                  <input type="text" class="form-control" readonly disabled="disabled" value="<?=(!empty($link)) ? makeAffiliateUrl($link->affiliate_link_id) : ''?>">
+                </div>
+                <?php } ?>
 
                 <!-- /.row -->
               </div>
-              <!-- /.card-footer -->
+              <div class="card-footer">
+                  <a href="/affiliate/links" class="btn btn-default"><i class="fa-solid fa-backward"></i> Cancel</a>
+                  <button type="submit" class="btn btn-success float-right"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+                </div>
             </div>
+            </form>
             <!-- /.card -->
           </div>
           <!-- /.col -->

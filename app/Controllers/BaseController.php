@@ -12,6 +12,7 @@ use Psr\Log\LoggerInterface;
 use App\Libraries\Template;
 use App\Models\SettingsModel;
 use App\Models\UsersModel;
+use App\Models\CampaignsModel;
 
 /**
  * Class BaseController
@@ -58,6 +59,7 @@ abstract class BaseController extends Controller
 
         $this->settingsModel = new SettingsModel();
         $this->usersModel = new UsersModel();
+        $this->campaignsModel = new CampaignsModel();
 
         $this->merchant_url_slug = false;
         $current_domain = $_SERVER['SERVER_NAME'];

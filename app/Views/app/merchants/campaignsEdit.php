@@ -31,6 +31,11 @@
                 </div>
 
                 <div class="form-group">
+                  <label>Item URL</label>
+                  <input type="text" class="form-control" name="item_url" value="<?=(!empty($campaign)) ? $campaign->item_url : ''?>">
+                </div>
+
+                <div class="form-group">
                   <label>Item price ($)</label>
                   <input type="text" class="form-control" name="item_price" value="<?=(!empty($campaign)) ? $campaign->item_price : ''?>">
                 </div>

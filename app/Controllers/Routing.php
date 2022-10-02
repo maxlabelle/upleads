@@ -58,7 +58,12 @@ class Routing extends BaseController
 
     public function redirect($affiliateLinkId) {
       $smalluid = suid();
-      return redirect()->to("/?_ulaid=$affiliateLinkId&_ulsuid=$smalluid");
+      $campaign = $this->campaignsModel->getLinkData($affiliateLinkId);
+      if (!$campaign) {
+        return redirect()->to('/');
+      }
+      $this->campaignsModel->linkClick($campaign->link_id);
+      return redirect()->to("{$campaign->item_url}/?_ulaid=$affiliateLinkId&_ulsuid=$smalluid");
     }
 
     public function tracking($trackingId, $tracking) {

@@ -32,35 +32,34 @@ class Affiliate extends SecureBaseController
 
       if ($operation) {
         $action = $this->request->getVar("action");
+        $link=false;
 
-        if ($operation === "edit") {
-
-          return $this->template->view('merchants/linksEdit', [
-            'link' => $link
-          ]);
-        }
-
-        if ($operation === "new") {
-          $linkId = uid();
-          $this->campaignsModel->create([
-            'id' => $uid,
-            'user_id' => $userId,
-            'name' => $name,
-            'status' => $status,
-            'item_price' => $item_price,
-            'item_commission_pc' => $item_commission_pc,
-            'affiliateApproval' => $affiliateApproval,
-          ]);
-          return $this->template->view('merchants/linksEdit', [
-            'link' => $link
-          ]);
-        }
-
-        if ($operation === "drop") {
-          $this->usersModel->drop($userId, $linkId);
+        if ($operation === "delete") {
+          $this->campaignsModel->deleteLink($userId, $linkId);
           return redirect()->to('/affiliate/links');
         }
 
+        if ($action=="save") {
+          if ($operation === "new") {
+            $linkId = uid();
+            $campaignId = $this->request->getVar("campaign_id");
+            $affiliateLinkId = suid();
+            $this->campaignsModel->createLink([
+              'id' => $linkId,
+              'user_id' => $userId,
+              'affiliate_link_id' => $affiliateLinkId,
+              'campaign_id' => $campaignId,
+            ]);
+            return redirect()->to('/affiliate/links');     
+          }
+        }
+
+        $campaigns = $this->campaignsModel->getJoinedPrograms($userId);
+
+        return $this->template->view('affiliate/linksEdit', [
+          'campaigns' => $campaigns,
+          'link' => $link,
+        ]);
       } else {
         $links = $this->campaignsModel->getLinks($userId);
 

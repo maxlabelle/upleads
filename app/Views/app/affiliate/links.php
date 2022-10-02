@@ -37,15 +37,17 @@
                       <tr>
                         <td><?=$row->merchant_name?></td>
                         <td><?=$row->name?></td>
+                        <td>
+                          <div class="input-group mb-3">
+                            <input type="text" disabled="disabled" readonly value="<?=makeAffiliateUrl($row->affiliate_link_id)?>" class="form-control" id="content" placeholder="URL" aria-label="URL" aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                              <button class="btn btn-outline-secondary copy-text" type="button" id="button-addon2">Copy</button>
+                              <a class="btn btn-outline-secondary" href="<?=makeAffiliateUrl($row->affiliate_link_id)?>" target="_blank">View</a>
+                            </div>
+                          </div>
+                        </td>
                         <td class="text-right tiny-width">
-                          <?php if ($row->userStatus == 'Approved') { ?>
-                            <a href="/affiliate/programs/leave/<?=$row->id?>" class="btn btn-sm btn-danger aDeleteBtn"><i class="fa-solid fa-circle-xmark"></i> Leave</a>
-                          <a href="#" class="btn btn-sm btn-success"><i class="fa-solid fa-square-check"></i> Joined</a>
-                        <?php } elseif ($row->userStatus == 'Pending') { ?>
-                            <a href="#" class="btn btn-sm btn-primary"><i class="fa-solid fa-hourglass-start"></i> Pending approval</a>
-                          <?php } else { ?>
-                            <a href="/affiliate/programs/join/<?=$row->id?>" class="btn btn-sm btn-info"><i class="fa-solid fa-arrow-right"></i> Ask to join</a>
-                          <?php } ?>
+                          <a href="/affiliate/links/delete/<?=$row->id?>" class="aDeleteBtn btn btn-sm btn-danger"><i class="fa-solid fa-circle-xmark"></i></a>
                         </td>
                       </tr>
                     <?php } ?>
