@@ -167,7 +167,7 @@ class Merchants extends SecureBaseController
         $merchant_autoapprove = $this->request->getVar("merchant_autoapprove");
         $merchant_name = $this->request->getVar("merchant_name");
 
-        $url_slug = slugify($merchant_name);
+        $url_slug = slugify($merchant_name);        
 
         if ($this->settingsModel->slugExists($userId, $url_slug)) {
           $url_slug = '';

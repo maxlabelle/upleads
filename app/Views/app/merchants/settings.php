@@ -57,6 +57,11 @@
                                     </div>
 
                                     <div class="form-group">
+                                      <label>Merchant API key</label>
+                                      <input type="text" disabled="disabled" readonly class="form-control" name="merchant_api_key" value="<?=(!empty($settings)) ? $settings->merchant_api_key : ''?>">
+                                    </div>
+
+                                    <div class="form-group">
                                       <label>Auto-approve new affiliates</label>
                                       <select class="form-control" name="merchant_autoapprove">
                                         <option value="Yes" <?=(!empty($settings) && $settings->merchant_autoapprove==='Yes') ? 'selected' : ''?>>Yes</option>

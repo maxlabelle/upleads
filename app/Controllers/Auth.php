@@ -106,6 +106,11 @@ class Auth extends BaseController
             $merchantId = $settings->user_id;
           } else {
             $roles[] = "Merchant";
+            $this->settingsModel->create([
+              'id'=>uid(),
+              'merchant_api_key' => uid(),
+              'user_id' => $userId,
+            ]);
           }
 
           $roles = json_encode($roles);
@@ -116,7 +121,7 @@ class Auth extends BaseController
             'merchant_id' => $merchantId,
             'passwordhash' => password_hash($password, PASSWORD_BCRYPT),
             'status' => 'Active',
-            'approved' => (isset($config['autoapprove']) && $config['autoapprove']==='Yes') ? 'Yes' : 'No',
+            'approved' => (isset($settings->affiliateApproval) && $settings->affiliateApproval==='Automatic') ? 'Yes' : 'No',
             'roles' => $roles,
           ]);
 
