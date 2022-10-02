@@ -13,6 +13,7 @@ use App\Libraries\Template;
 use App\Models\SettingsModel;
 use App\Models\UsersModel;
 use App\Models\CampaignsModel;
+use App\Models\PagesModel;
 
 /**
  * Class BaseController
@@ -60,6 +61,7 @@ abstract class BaseController extends Controller
         $this->settingsModel = new SettingsModel();
         $this->usersModel = new UsersModel();
         $this->campaignsModel = new CampaignsModel();
+        $this->pagesModel = new PagesModel();
 
         $this->merchant_url_slug = false;
         $current_domain = $_SERVER['SERVER_NAME'];

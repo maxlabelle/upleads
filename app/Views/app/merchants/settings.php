@@ -34,7 +34,6 @@
                   <a class="nav-link active" id="vert-tabs-general-tab" data-toggle="pill" href="#vert-tabs-general" role="tab" aria-controls="vert-tabs-general" aria-selected="true">General</a>
                   <a class="nav-link" id="vert-tabs-display-tab" data-toggle="pill" href="#vert-tabs-display" role="tab" aria-controls="vert-tabs-display" aria-selected="false">Display</a>
                   <a class="nav-link" id="vert-tabs-terms-tab" data-toggle="pill" href="#vert-tabs-terms" role="tab" aria-controls="vert-tabs-terms" aria-selected="false">Terms</a>
-                  <a class="nav-link" id="vert-tabs-home-tab" data-toggle="pill" href="#vert-tabs-home" role="tab" aria-controls="vert-tabs-home" aria-selected="false">Home page</a>
                 </div>
               </div>
               <div class="col-7 col-sm-9">
@@ -115,12 +114,7 @@
                       <textarea id="summernote" class="summernote" name="merchant_terms"><?=(!empty($settings)) ? $settings->merchant_terms : ''?></textarea>
                     </div>
                   </div>
-                  <div class="tab-pane fade" id="vert-tabs-home" role="tabpanel" aria-labelledby="vert-tabs-home-tab">
-                    <div class="form-group">
-                      <label>Home page <?=(!empty($settings) && $settings->merchant_url_slug) ? '( <a href="/a/'.$settings->merchant_url_slug.'/home" target="_blank">Preview</a>) ' : ''?></label>
-                      <textarea id="summernote" class="summernote" name="merchant_home"><?=(!empty($settings)) ? $settings->merchant_home : ''?></textarea>
-                    </div>
-                  </div>
+
 
                 </div>
               </div>

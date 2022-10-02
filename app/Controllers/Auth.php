@@ -143,7 +143,7 @@ class Auth extends BaseController
 
     public function terms($merchantUrlSlug = false) {
       $error = false;
-      $settings = false;
+      $settings = getDefaultConfig();
 
       if (!$merchantUrlSlug && $this->merchant_url_slug) {
           $merchantUrlSlug = $this->merchant_url_slug;

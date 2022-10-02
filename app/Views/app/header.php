@@ -103,6 +103,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="/merchants/pages" class="nav-link  <?=isActive('pages')?>">
+              <i class="nav-icon fa-solid fa-code"></i>
+              <p>
+                Pages
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="/merchants/settings" class="nav-link  <?=isActive('settings')?>">
               <i class="nav-icon fa-solid fa-gear"></i>
               <p>
@@ -139,16 +147,6 @@
             </a>
           </li>
           <?php } ?>
-
-          <li class="nav-header">Referrals</li>
-          <li class="nav-item">
-            <a href="/referrals/links" class="nav-link">
-              <i class="nav-icon fas fa-calendar-alt"></i>
-              <p>
-                Links
-              </p>
-            </a>
-          </li>
 
           <?php if (hasRole(roles(), "Admin")) { ?>
           <li class="nav-header">Admin</li>

@@ -39,6 +39,7 @@ $routes->get('/', 'Home::index');
 $routes->add('/auth/login', 'Auth::login');
 $routes->add('/auth/register', 'Auth::register');
 $routes->get('/auth/logout', 'Auth::logout');
+$routes->get('/auth/terms', 'Auth::terms');
 
 $routes->add('a/(:segment)/login', 'Auth::login/$1');
 $routes->add('a/(:segment)/register', 'Auth::register/$1');
@@ -54,6 +55,8 @@ $routes->get('r/(:segment)', 'Routing::redirect/$1');
 $routes->get('v/(:segment)', 'Routing::tracking/$1/visit');
 $routes->get('o/(:segment)', 'Routing::tracking/$1/order');
 $routes->get('p/(:segment)/(:segment)/(:segment)', 'Routing::pixel/$1/$2/$3');
+
+$routes->get('page/(:segment)', 'Home::view/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

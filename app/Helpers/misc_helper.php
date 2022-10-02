@@ -17,7 +17,7 @@ function suid($length = 8) {
 function hasRole($roles, $role) {
   if (!empty($roles)) {
     $roles = json_decode($roles, true);
-    if (is_array($roles) && (in_array("Admin", $roles) || in_array($role,$roles))) {
+    if (is_array($roles) && in_array($role,$roles)) {
       return true;
     }
   }

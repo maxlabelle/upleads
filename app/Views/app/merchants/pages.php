@@ -13,7 +13,7 @@
               <div class="card-header">
                 <div class="row">
                   <div class="col-md-12">
-                    <h5>Users</h5>
+                    <h5>Pages</h5>
                   </div>
                 </div>
               </div>
@@ -24,22 +24,22 @@
                   <thead>
                   <tr>
                     <th>Name</th>
-                    <th>Status</th>
-                    <th>Roles</th>
-                    <th class="text-right tiny-width" data-orderable="false"><a href="/admin/users/new" class="btn btn-sm btn-success"><i class="fa-solid fa-circle-plus"></i></a></th>
+                    <th>Type</th>
+                    <th>Title</th>
+                    <th class="text-right tiny-width" data-orderable="false">
+                      <a href="/merchants/pages/new" class="btn btn-sm btn-success"><i class="fa-solid fa-circle-plus"></i></a>
+                    </th>
                   </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($users->getResult() as $row) { ?>
-                      <tr <?= (hasRole($row->roles, 'SuperAdmin')) ? 'class="bg-warning"' : '' ?>>
-                        <td><?=$row->name?></td>
-                        <td><?=$row->status?></td>
-                        <td><?=implode(", ",json_decode($row->roles, true))?></td>
+                    <?php foreach($pages->getResult() as $row) { ?>
+                      <tr>
+                        <td><?=$row->page_name?></td>
+                        <td><?=$row->page_type?></td>
+                        <td><?=$row->page_title?></td>
                         <td class="text-right tiny-width">
-                          <?php if (!hasRole($row->roles, 'SuperAdmin')) { ?>
-                            <a id="aDeleteBtn" href="/admin/users/delete/<?=$row->id?>" class="btn btn-sm btn-danger"><i class="fa-solid fa-circle-xmark"></i></a>
-                          <?php } ?>
-                          <a href="/admin/users/edit/<?=$row->id?>" class="btn btn-sm btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
+                          <a href="/merchants/pages/delete/<?=$row->id?>" class="btn btn-sm btn-danger aDeleteBtn"><i class="fa-solid fa-circle-xmark"></i></a>
+                          <a href="/merchants/pages/edit/<?=$row->id?>" class="btn btn-sm btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
                         </td>
                       </tr>
                     <?php } ?>

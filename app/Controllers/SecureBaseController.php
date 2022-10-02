@@ -13,6 +13,7 @@ use App\Libraries\Template;
 use App\Models\CampaignsModel;
 use App\Models\UsersModel;
 use App\Models\SettingsModel;
+use App\Models\PagesModel;
 
 /**
  * Class BaseController
@@ -61,6 +62,7 @@ abstract class SecureBaseController extends Controller
         $this->campaignsModel = new CampaignsModel();
         $this->usersModel = new UsersModel();
         $this->settingsModel = new SettingsModel();
+        $this->pagesModel = new PagesModel();
     }
 
     public function _remap($method, ...$params)

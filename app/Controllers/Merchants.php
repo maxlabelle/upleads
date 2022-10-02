@@ -65,6 +65,82 @@ class Merchants extends SecureBaseController
         ]);
       }
     }
+
+    public function pages($operation = false, $pageId = false) {
+      $userId = $this->session->get('userId');
+      $errors = [];
+
+      if ($operation) {
+        $action = $this->request->getVar("action");
+        if ($action == "save") {
+          $page_name = slugify($this->request->getVar("page_name"));
+          $page_type = $this->request->getVar("page_type");
+          $page_title = $this->request->getVar("page_title");
+          $page_body = $this->request->getVar("page_body");
+          $page_theme = $this->request->getVar("page_theme");
+
+          $payload = [
+            'user_id' => $userId,
+            'page_name' => $page_name,
+            'page_type' => $page_type,
+            'page_title' => $page_title,
+            'page_theme' => $page_theme,
+            'page_body' => base64_encode($page_body),
+          ];
+
+          if ($this->pagesModel->slugExists($userId, $page_name)) {
+            $errors[] = 'Page already exists.';
+          } else {
+
+            if ($page_type=="Default") {
+              $this->pagesModel->edit(['user_id'=>$userId,'page_type'=>'Default'], [
+                'page_type' => "Regular",
+              ]);
+            }
+
+            if ($page_type=="Header") {
+              $this->pagesModel->edit(['user_id'=>$userId,'page_type'=>'Header'], [
+                'page_type' => "Regular",
+              ]);
+            }
+
+            if ($page_type=="Footer") {
+              $this->pagesModel->edit(['user_id'=>$userId,'page_type'=>'Footer'], [
+                'page_type' => "Regular",
+              ]);
+            }
+
+            if ($operation === "edit") {
+              $this->pagesModel->edit($pageId, $payload);
+            } else {
+              $payload['id'] = uid();
+              $this->pagesModel->create($payload);
+              return redirect()->to('/merchants/pages');
+            }
+          }
+        }
+
+        if ($operation === "delete") {
+          $this->pagesModel->remove(['user_id'=>$userId, 'id'=>$pageId]);
+          return redirect()->to('/merchants/pages');
+        }
+
+        $page = false;
+        if ($operation === "edit") {
+          $page = $this->pagesModel->getWhereSingle(['user_id'=>$userId, 'id'=>$pageId]);
+        }
+
+        return $this->template->view('merchants/pagesEdit', [
+          'errors' => $errors,
+          'page' => $page
+        ]);
+      } else {
+        $pages = $this->pagesModel->getWhere(['user_id'=>$userId]);
+        return $this->template->view('merchants/pages', [
+          'pages' => $pages
+        ]);
+      }
+    }
     public function affiliates($operation = false, $affiliateId = false) {
       $userId = $this->session->get('userId');
 
@@ -167,7 +243,7 @@ class Merchants extends SecureBaseController
         $merchant_autoapprove = $this->request->getVar("merchant_autoapprove");
         $merchant_name = $this->request->getVar("merchant_name");
 
-        $url_slug = slugify($merchant_name);        
+        $url_slug = slugify($merchant_name);
 
         if ($this->settingsModel->slugExists($userId, $url_slug)) {
           $url_slug = '';
